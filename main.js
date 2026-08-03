@@ -407,16 +407,36 @@ function initProductPage(){
   }
 
   function renderSwatches(){
-    const wrap = document.querySelector("#colorSwatches");
-    if(!wrap) return;
-    const lang = getLang();
-    wrap.innerHTML = palette.map(c=>`
-      <button type="button" class="swatch-btn ${c.code===selectedColor.code?'active':''}" data-code="${c.code}"
-        style="--swatch:${c.hex};" title="${pickLang(c.name,lang)} — ${c.code}" aria-label="${pickLang(c.name,lang)}">
-        <span class="swatch-fill"></span>
-      </button>
-    `).join("");
-  }
+  const wrap = document.querySelector("#colorSwatches");
+  if(!wrap) return;
+
+  const lang = getLang();
+
+  wrap.innerHTML = palette.map(c=>`
+    <button
+      type="button"
+      class="swatch-btn ${c.code === selectedColor.code ? "active" : ""}"
+      data-code="${c.code}"
+      style="--swatch:${c.hex};"
+      title="${pickLang(c.name, lang)} — ${c.code}"
+      aria-label="${pickLang(c.name, lang)}"
+    >
+      <span class="swatch-fill"></span>
+    </button>
+  `).join("");
+
+  wrap.querySelectorAll(".swatch-btn").forEach(btn=>{
+    btn.addEventListener("click", e=>{
+      e.preventDefault();
+
+      const color = palette.find(c => c.code === btn.dataset.code);
+
+      if(color){
+        applyColor(color);
+      }
+    });
+  });
+}
 
   function filterSwatches(query){
     const q = query.trim().toLowerCase();
