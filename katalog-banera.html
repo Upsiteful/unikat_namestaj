@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog banera — Unikat Nameštaj</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:#efe7d8;font-family:'Manrope',sans-serif;color:#241a12;}
+img,svg{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3{margin:0;font-family:'Fraunces',serif;font-weight:500;}
+p{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+a{color:inherit;text-decoration:none;}
+
+:root{
+  --walnut-950:#191410;
+  --walnut-900:#241a12;
+  --walnut-800:#2f2116;
+  --walnut-700:#4a3320;
+  --oak-500:#8a5f38;
+  --brass-500:#b08d57;
+  --brass-300:#cda05d;
+  --brass-100:#e7d3ac;
+  --linen-50:#faf7f0;
+  --linen-100:#f3ede2;
+  --linen-200:#e9dfcd;
+  --ink:#241a12;
+  --ink-soft:#5b4d3f;
+  --line:rgba(36,26,18,.14);
+  --shadow:0 20px 44px -26px rgba(25,20,16,.35);
+  --shadow-lg:0 30px 60px -30px rgba(15,11,8,.5);
+}
+
+/* ---------------- intro ---------------- */
+.catalog-intro{background:var(--walnut-950);color:var(--linen-100);padding:64px 24px 52px;text-align:center;border-bottom:1px solid rgba(250,247,240,.1);}
+.catalog-intro .k{font-weight:800;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-300);margin-bottom:16px;display:block;}
+.catalog-intro h1{font-size:clamp(1.9rem,3.4vw,2.7rem);max-width:760px;margin:0 auto 14px;color:var(--linen-50);}
+.catalog-intro p{color:rgba(250,247,240,.72);max-width:620px;margin:0 auto;font-size:1rem;line-height:1.6;}
+
+/* ---------------- sticky jump nav ---------------- */
+.jump-nav{position:sticky;top:0;z-index:80;background:var(--walnut-950);border-bottom:1px solid rgba(250,247,240,.1);overflow-x:auto;white-space:nowrap;padding:0 18px;}
+.jump-nav::-webkit-scrollbar{height:5px;}
+.jump-nav::-webkit-scrollbar-thumb{background:#39332a;border-radius:4px;}
+.jump-nav .row{display:inline-flex;gap:6px;padding:12px 0;}
+.jump-nav a{flex:none;font-size:.78rem;font-weight:700;color:#d8d0c1;padding:9px 15px;border-radius:999px;border:1px solid rgba(250,247,240,.14);transition:.2s;}
+.jump-nav a:hover{border-color:var(--brass-300);color:var(--linen-50);}
+.jump-nav a b{color:var(--brass-300);margin-right:6px;}
+
+/* ---------------- catalog block scaffolding ---------------- */
+.block{padding:76px 24px;scroll-margin-top:58px;background:var(--linen-50);}
+.block:nth-of-type(even){background:var(--linen-100);}
+.block .inner{max-width:1180px;margin:0 auto;}
+.block-tag{display:flex;align-items:center;gap:14px;margin-bottom:34px;padding-bottom:20px;border-bottom:1px solid var(--line);}
+.block-tag .num{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--brass-500);flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--brass-500);display:flex;align-items:center;justify-content:center;}
+.block-tag .txt b{display:block;font-size:1.08rem;color:var(--ink);}
+.block-tag .txt span{display:block;font-size:.8rem;color:var(--ink-soft);margin-top:2px;}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:.88rem;white-space:nowrap;transition:transform .25s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-brass{background:var(--brass-500);color:var(--walnut-950);}
+.btn-light{background:var(--linen-50);color:var(--walnut-950);}
+.btn-outline-light{border:1px solid rgba(250,247,240,.5);color:var(--linen-50);}
+.btn-dark{background:var(--walnut-950);color:var(--linen-50);}
+
+/* ==========================================================================
+   01 — TOP ANNOUNCEMENT STRIP
+   ========================================================================== */
+.banner-strip{
+  background:var(--walnut-950);color:var(--linen-100);border-radius:999px;
+  display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+  padding:14px 26px;font-size:.88rem;font-weight:600;
+}
+.banner-strip .dot{width:6px;height:6px;border-radius:50%;background:var(--brass-300);flex:none;}
+.banner-strip b{color:var(--brass-300);}
+.banner-strip a{text-decoration:underline;text-underline-offset:3px;font-weight:700;flex:none;}
+
+/* ==========================================================================
+   02 — FULL-WIDTH HERO PROMO (split, image side)
+   ========================================================================== */
+.banner-hero{
+  border-radius:28px;overflow:hidden;background:linear-gradient(120deg,var(--walnut-950),var(--walnut-800));
+  display:grid;grid-template-columns:1.15fr .85fr;box-shadow:var(--shadow-lg);
+}
+.banner-hero-copy{padding:56px 52px;color:var(--linen-50);}
+.banner-hero .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-300);margin-bottom:16px;}
+.banner-hero h2{font-size:clamp(1.7rem,2.8vw,2.3rem);color:var(--linen-50);line-height:1.18;max-width:480px;}
+.banner-hero p{margin-top:16px;color:rgba(250,247,240,.72);max-width:420px;font-size:.96rem;line-height:1.6;}
+.banner-hero .actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
+.banner-hero-visual{
+  position:relative;background:linear-gradient(160deg,var(--oak-500),var(--walnut-700));
+  display:flex;align-items:center;justify-content:center;
+}
+.banner-hero-visual::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(105deg,rgba(255,255,255,.05) 0 2px,transparent 2px 26px);}
+.banner-hero-visual .badge{
+  position:relative;z-index:1;width:150px;height:150px;border-radius:50%;background:rgba(250,247,240,.95);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--walnut-950);text-align:center;
+  box-shadow:var(--shadow-lg);
+}
+.banner-hero-visual .badge b{font-family:'Fraunces',serif;font-size:2.1rem;line-height:1;}
+.banner-hero-visual .badge span{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;max-width:100px;}
+@media (max-width:820px){ .banner-hero{grid-template-columns:1fr;} .banner-hero-visual{min-height:220px;} }
+
+/* ==========================================================================
+   03 — PROMO CARD GRID (tiles)
+   ========================================================================== */
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.promo-card{
+  border-radius:22px;padding:32px 28px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow);color:var(--linen-50);min-height:230px;display:flex;flex-direction:column;
+}
+.promo-card.c1{background:linear-gradient(155deg,#2f2116,#191410);}
+.promo-card.c2{background:linear-gradient(155deg,#4a3320,#2f2116);}
+.promo-card.c3{background:linear-gradient(155deg,#6b4a2c,#3a2818);}
+.promo-card .tag{font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-300);margin-bottom:16px;}
+.promo-card h3{font-size:1.35rem;color:var(--linen-50);line-height:1.25;}
+.promo-card p{margin-top:10px;color:rgba(250,247,240,.68);font-size:.86rem;flex:1;}
+.promo-card .go{margin-top:18px;font-size:.84rem;font-weight:700;color:var(--brass-300);display:inline-flex;align-items:center;gap:6px;}
+@media (max-width:900px){ .promo-grid{grid-template-columns:1fr 1fr;} }
+@media (max-width:600px){ .promo-grid{grid-template-columns:1fr;} }
+
+/* ==========================================================================
+   04 — CORNER RIBBON ON PRODUCT CARD
+   ========================================================================== */
+.ribbon-demo-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.ribbon-card{background:var(--linen-100);border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative;}
+.ribbon-card .media{aspect-ratio:4/3;background:linear-gradient(150deg,var(--linen-200),var(--linen-100));position:relative;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:.78rem;font-weight:600;}
+.ribbon-card .ribbon{
+  position:absolute;top:16px;left:-38px;background:var(--brass-500);color:var(--walnut-950);
+  font-size:.72rem;font-weight:800;letter-spacing:.04em;padding:6px 44px;transform:rotate(-40deg);
+  box-shadow:0 6px 14px rgba(0,0,0,.25);
+}
+.ribbon-card .badge-corner{
+  position:absolute;top:14px;right:14px;background:var(--walnut-950);color:var(--brass-300);
+  font-size:.72rem;font-weight:800;padding:7px 12px;border-radius:999px;
+}
+.ribbon-card .body{padding:18px 20px 22px;}
+.ribbon-card h4{font-size:1rem;color:var(--ink);margin-bottom:6px;}
+.ribbon-card .price{font-size:.86rem;color:var(--ink-soft);}
+.ribbon-card .price s{opacity:.6;margin-right:6px;}
+.ribbon-card .price b{color:var(--walnut-950);font-size:1.05rem;}
+@media (max-width:900px){ .ribbon-demo-wrap{grid-template-columns:1fr 1fr;} }
+@media (max-width:600px){ .ribbon-demo-wrap{grid-template-columns:1fr;} }
+
+/* ==========================================================================
+   05 — COUNTDOWN / LIMITED-TIME BANNER
+   ========================================================================== */
+.banner-countdown{
+  background:linear-gradient(100deg,#3a151b,#2b0f14);border-radius:24px;padding:44px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;color:var(--linen-50);
+  box-shadow:var(--shadow-lg);
+}
+.banner-countdown .left .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-300);margin-bottom:12px;}
+.banner-countdown h2{font-size:clamp(1.4rem,2.4vw,1.9rem);color:var(--linen-50);max-width:420px;}
+.banner-countdown .timer{display:flex;gap:12px;}
+.banner-countdown .timer div{
+  background:rgba(250,247,240,.08);border:1px solid rgba(250,247,240,.18);border-radius:14px;
+  width:72px;padding:14px 0;text-align:center;
+}
+.banner-countdown .timer b{display:block;font-family:'Fraunces',serif;font-size:1.6rem;}
+.banner-countdown .timer span{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(250,247,240,.65);}
+.banner-countdown .right{display:flex;flex-direction:column;align-items:flex-start;gap:14px;}
+@media (max-width:820px){ .banner-countdown{flex-direction:column;align-items:flex-start;} }
+
+/* ==========================================================================
+   06 — SPLIT SEASONAL BANNER
+   ========================================================================== */
+.banner-split{border-radius:26px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:var(--shadow-lg);min-height:280px;}
+.banner-split .side{padding:48px;display:flex;flex-direction:column;justify-content:center;}
+.banner-split .side.dark{background:var(--walnut-950);color:var(--linen-50);}
+.banner-split .side.wood{background:linear-gradient(160deg,var(--oak-500),var(--walnut-700));color:var(--linen-50);position:relative;overflow:hidden;}
+.banner-split .side.wood::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.06) 0 2px,transparent 2px 24px);}
+.banner-split .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-300);margin-bottom:14px;}
+.banner-split h2{font-size:clamp(1.4rem,2.4vw,1.9rem);}
+.banner-split .big{position:relative;z-index:1;font-family:'Fraunces',serif;font-size:clamp(2.6rem,5vw,4rem);line-height:1;}
+.banner-split .big span{display:block;font-size:1rem;font-family:'Manrope',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-top:10px;}
+@media (max-width:820px){ .banner-split{grid-template-columns:1fr;} }
+
+/* ==========================================================================
+   07 — STICKY BOTTOM BAR
+   ========================================================================== */
+.mock-browser{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);}
+.mock-browser .top{background:var(--linen-200);padding:10px 16px;display:flex;gap:6px;}
+.mock-browser .top span{width:9px;height:9px;border-radius:50%;background:#d8c6a6;}
+.mock-browser .screen{background:var(--linen-50);padding:60px 30px;text-align:center;color:var(--ink-soft);font-size:.85rem;position:relative;min-height:180px;}
+.banner-bottombar{
+  position:absolute;left:16px;right:16px;bottom:16px;background:var(--walnut-950);color:var(--linen-50);
+  border-radius:16px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  box-shadow:var(--shadow-lg);flex-wrap:wrap;
+}
+.banner-bottombar .txt{font-size:.86rem;text-align:left;}
+.banner-bottombar .txt b{color:var(--brass-300);}
+.banner-bottombar .actions{display:flex;align-items:center;gap:10px;}
+.banner-bottombar .close{width:30px;height:30px;border-radius:50%;background:rgba(250,247,240,.1);display:flex;align-items:center;justify-content:center;color:var(--linen-100);font-size:.9rem;}
+
+/* ==========================================================================
+   08 — CIRCULAR SEAL / FLOATING BADGE
+   ========================================================================== */
+.seal-demo{display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
+.seal-demo .card{
+  position:relative;flex:1;min-width:280px;border-radius:22px;background:var(--linen-100);border:1px solid var(--line);
+  padding:40px;min-height:200px;display:flex;align-items:center;
+}
+.seal-demo .card p{color:var(--ink-soft);font-size:.92rem;max-width:360px;}
+.seal{
+  position:absolute;top:-26px;right:-16px;width:118px;height:118px;border-radius:50%;
+  background:var(--brass-500);color:var(--walnut-950);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;box-shadow:var(--shadow-lg);transform:rotate(8deg);border:3px dashed rgba(25,20,16,.25);
+}
+.seal b{font-family:'Fraunces',serif;font-size:1.5rem;line-height:1;}
+.seal span{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-top:4px;max-width:80px;}
+
+/* ==========================================================================
+   09 — NEWSLETTER / SIGNUP INCENTIVE
+   ========================================================================== */
+.banner-newsletter{
+  background:var(--linen-100);border:1px solid var(--line);border-radius:26px;padding:46px 50px;
+  display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;
+}
+.banner-newsletter .copy{max-width:440px;}
+.banner-newsletter .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-500);margin-bottom:12px;}
+.banner-newsletter h2{font-size:clamp(1.3rem,2.2vw,1.7rem);}
+.banner-newsletter p{margin-top:10px;color:var(--ink-soft);font-size:.92rem;}
+.banner-newsletter form{display:flex;gap:10px;flex-wrap:wrap;}
+.banner-newsletter input{
+  padding:14px 18px;border-radius:999px;border:1px solid var(--line);background:var(--linen-50);min-width:230px;font-size:.9rem;
+}
+
+/* ==========================================================================
+   10 — FULL-BLEED SEASONAL / NEW COLLECTION
+   ========================================================================== */
+.banner-fullbleed{
+  border-radius:28px;overflow:hidden;position:relative;min-height:320px;display:flex;align-items:center;
+  background:radial-gradient(120% 140% at 85% 10%,#3a2818 0%,var(--walnut-950) 60%);color:var(--linen-50);
+  padding:60px;box-shadow:var(--shadow-lg);
+}
+.banner-fullbleed::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background:repeating-linear-gradient(100deg, rgba(176,141,87,.06) 0 2px, transparent 2px 40px);
+}
+.banner-fullbleed .content{position:relative;z-index:1;max-width:560px;}
+.banner-fullbleed .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-300);margin-bottom:16px;}
+.banner-fullbleed h2{font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.16;}
+.banner-fullbleed p{margin-top:16px;color:rgba(250,247,240,.72);font-size:.98rem;line-height:1.6;max-width:460px;}
+.banner-fullbleed .actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
+
+/* ---------------- footer ---------------- */
+.catalog-foot{background:var(--walnut-950);color:rgba(250,247,240,.55);text-align:center;padding:40px 24px;font-size:.82rem;}
+.catalog-foot b{color:var(--brass-300);}
+</style>
+</head>
+<body>
+
+<div class="catalog-intro">
+  <span class="k">Interni dokument — nije deo javnog sajta</span>
+  <h1>Katalog banera za akcije i pogodnosti</h1>
+  <p>Deset različitih formata za isticanje ponuda — od tanke trake na vrhu sajta do velikog promo banera. Isti brend jezik (orah, lan, mesing), različiti oblici za različita mesta na sajtu.</p>
+</div>
+
+<nav class="jump-nav">
+  <div class="row">
+    <a href="#b1"><b>01</b>Traka na vrhu</a>
+    <a href="#b2"><b>02</b>Hero baner</a>
+    <a href="#b3"><b>03</b>Kartice ponuda</a>
+    <a href="#b4"><b>04</b>Traka na proizvodu</a>
+    <a href="#b5"><b>05</b>Odbrojavanje</a>
+    <a href="#b6"><b>06</b>Sezonski baner</a>
+    <a href="#b7"><b>07</b>Traka pri dnu</a>
+    <a href="#b8"><b>08</b>Pečat / bedž</a>
+    <a href="#b9"><b>09</b>Prijava na listu</a>
+    <a href="#b10"><b>10</b>Najava kolekcije</a>
+  </div>
+</nav>
+
+<!-- 01 — TOP ANNOUNCEMENT STRIP -->
+<section class="block" id="b1">
+  <div class="inner">
+    <div class="block-tag"><span class="num">01</span><div class="txt"><b>Traka na vrhu sajta</b><span>Tanka, iznad top bara — za kratke, uvek-vidljive poruke</span></div></div>
+    <div class="banner-strip">
+      <span class="dot"></span>
+      <span>Uz porudžbinu kompletne kuhinje, <b>ormar za cipele -50%</b>.</span>
+      <a href="#">Saznajte više →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — FULL-WIDTH HERO PROMO -->
+<section class="block" id="b2">
+  <div class="inner">
+    <div class="block-tag"><span class="num">02</span><div class="txt"><b>Veliki hero baner</b><span>Za početnu stranu ili vrh kategorije — najveći vizuelni naglasak</span></div></div>
+    <div class="banner-hero">
+      <div class="banner-hero-copy">
+        <div class="eyebrow">Garancija bez malih slova</div>
+        <h2>5 godina garancije na svaki komad nameštaja, bez izuzetka</h2>
+        <p>Stojimo iza konstrukcije, okova i lakiranja svakog projekta koji izađe iz naše radionice.</p>
+        <div class="actions">
+          <a href="#" class="btn btn-brass">Zatražite ponudu</a>
+          <a href="#" class="btn btn-outline-light">Uslovi garancije</a>
+        </div>
+      </div>
+      <div class="banner-hero-visual">
+        <div class="badge"><b>5</b><span>Godina garancije</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — PROMO CARD GRID -->
+<section class="block" id="b3">
+  <div class="inner">
+    <div class="block-tag"><span class="num">03</span><div class="txt"><b>Kartice ponuda</b><span>Za sekciju sa više aktivnih akcija odjednom, npr. iznad footera</span></div></div>
+    <div class="promo-grid">
+      <div class="promo-card c1">
+        <span class="tag">Kompletno opremanje</span>
+        <h3>Opremite ceo stan — jedan komad nameštaja dobijate gratis</h3>
+        <p>Važi za porudžbine koje obuhvataju najmanje tri prostorije.</p>
+        <span class="go">Detalji ponude →</span>
+      </div>
+      <div class="promo-card c2">
+        <span class="tag">Rate bez kamate</span>
+        <h3>Plaćanje na 12 mesečnih rata, bez kamate</h3>
+        <p>Dostupno za sve porudžbine iznad 1.000 €.</p>
+        <span class="go">Izračunajte ratu →</span>
+      </div>
+      <div class="promo-card c3">
+        <span class="tag">Preporuka prijatelju</span>
+        <h3>Vi i vaš prijatelj dobijate po 5% popusta</h3>
+        <p>Popust se primenjuje na sledeću porudžbinu oboje.</p>
+        <span class="go">Pošaljite pozivnicu →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 — CORNER RIBBON ON PRODUCT CARD -->
+<section class="block" id="b4">
+  <div class="inner">
+    <div class="block-tag"><span class="num">04</span><div class="txt"><b>Traka / bedž na kartici proizvoda</b><span>Za isticanje pojedinačnih akcijskih proizvoda u katalogu</span></div></div>
+    <div class="ribbon-demo-wrap">
+      <div class="ribbon-card">
+        <div class="media">Fotografija proizvoda<span class="ribbon">AKCIJA</span></div>
+        <div class="body"><h4>Ormar Atelje</h4><div class="price"><s>€890</s> <b>€712</b></div></div>
+      </div>
+      <div class="ribbon-card">
+        <div class="media">Fotografija proizvoda<span class="badge-corner">Novo</span></div>
+        <div class="body"><h4>Sofa Como</h4><div class="price"><b>€1.450</b></div></div>
+      </div>
+      <div class="ribbon-card">
+        <div class="media">Fotografija proizvoda<span class="badge-corner">-20%</span></div>
+        <div class="body"><h4>Trpezarijski sto Rustik</h4><div class="price"><s>€980</s> <b>€784</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — COUNTDOWN BANNER -->
+<section class="block" id="b5">
+  <div class="inner">
+    <div class="block-tag"><span class="num">05</span><div class="txt"><b>Baner sa odbrojavanjem</b><span>Za akcije ograničenog trajanja — stvara osećaj hitnosti</span></div></div>
+    <div class="banner-countdown">
+      <div class="left">
+        <div class="eyebrow">Poslednji dani zimske akcije</div>
+        <h2>Do -20% na kompletan program spavaćih soba</h2>
+      </div>
+      <div class="timer">
+        <div><b>03</b><span>Dana</span></div>
+        <div><b>14</b><span>Sati</span></div>
+        <div><b>52</b><span>Min</span></div>
+      </div>
+      <div class="right">
+        <a href="#" class="btn btn-brass">Iskoristite popust</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 — SPLIT SEASONAL BANNER -->
+<section class="block" id="b6">
+  <div class="inner">
+    <div class="block-tag"><span class="num">06</span><div class="txt"><b>Sezonski baner, podeljen na dve polovine</b><span>Za veće kampanje — velika brojka + kontekst pored nje</span></div></div>
+    <div class="banner-split">
+      <div class="side dark">
+        <div class="eyebrow">Prolećna akcija</div>
+        <h2>Besplatna izmera i 3D projekat do kraja meseca</h2>
+        <div style="margin-top:24px;"><a href="#" class="btn btn-brass">Zakažite termin</a></div>
+      </div>
+      <div class="side wood">
+        <div class="big">-15%<span>Na sve porudžbine iznad 2.000 €</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 — STICKY BOTTOM BAR -->
+<section class="block" id="b7">
+  <div class="inner">
+    <div class="block-tag"><span class="num">07</span><div class="txt"><b>Traka pri dnu ekrana</b><span>Ostaje vidljiva dok korisnik čita sajt — ne prekida sadržaj</span></div></div>
+    <div class="mock-browser">
+      <div class="top"><span></span><span></span><span></span></div>
+      <div class="screen">
+        Primer stranice sajta — traka ostaje prikačena pri dnu ekrana dok se skroluje.
+        <div class="banner-bottombar">
+          <div class="txt">Prijavite se za konsultaciju ove nedelje i dobijate <b>besplatnu izmeru</b>.</div>
+          <div class="actions">
+            <a href="#" class="btn btn-brass">Zakažite</a>
+            <span class="close">✕</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 — CIRCULAR SEAL / FLOATING BADGE -->
+<section class="block" id="b8">
+  <div class="inner">
+    <div class="block-tag"><span class="num">08</span><div class="txt"><b>Okrugli pečat / bedž</b><span>Kači se preko ugla slike ili kartice, kao "pečat kvaliteta"</span></div></div>
+    <div class="seal-demo">
+      <div class="card">
+        <p>Primer kartice proizvoda ili sekcije preko koje se kači okrugli bedž sa ponudom.</p>
+        <div class="seal"><b>-50%</b><span>Ormar za cipele uz kuhinju</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 — NEWSLETTER SIGNUP INCENTIVE -->
+<section class="block" id="b9">
+  <div class="inner">
+    <div class="block-tag"><span class="num">09</span><div class="txt"><b>Prijava na listu uz podsticaj</b><span>Za sredinu stranice ili footer — sakuplja kontakte uz jasnu korist</span></div></div>
+    <div class="banner-newsletter">
+      <div class="copy">
+        <div class="eyebrow">Popust za nove klijente</div>
+        <h2>Prijavite se i dobijte 10% popusta na prvu porudžbinu</h2>
+        <p>Šaljemo samo obaveštenja o novim kolekcijama i aktuelnim akcijama — bez spama.</p>
+      </div>
+      <form onsubmit="return false;">
+        <input type="email" placeholder="Vaša email adresa">
+        <button type="submit" class="btn btn-dark">Prijavite se</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 10 — FULL-BLEED SEASONAL / NEW COLLECTION -->
+<section class="block" id="b10">
+  <div class="inner">
+    <div class="block-tag"><span class="num">10</span><div class="txt"><b>Baner preko celog okvira</b><span>Za najavu nove kolekcije ili veću kampanju na početnoj strani</span></div></div>
+    <div class="banner-fullbleed">
+      <div class="content">
+        <div class="eyebrow">Nova kolekcija kuhinja</div>
+        <h2>Rezervišite besplatnu konsultaciju za novu liniju kuhinja po meri</h2>
+        <p>Prvih 20 prijavljenih dobija besplatan 3D projekat kuhinje, bez obaveze naručivanja.</p>
+        <div class="actions">
+          <a href="#" class="btn btn-brass">Rezervišite termin</a>
+          <a href="#" class="btn btn-outline-light">Pogledajte kolekciju</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="catalog-foot">Katalog banera · <b>Unikat Nameštaj</b> · napravljeno za internu diskusiju o marketinškim akcijama</div>
+
+</body>
+</html>

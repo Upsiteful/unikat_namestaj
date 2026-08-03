@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog stilova — Unikat Nameštaj</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Marcellus&family=Bodoni+Moda:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ==========================================================================
+   RESET + SHARED SCAFFOLDING
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:#1b1b1b;font-family:'Inter',sans-serif;}
+img,svg{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+h1,h2,h3{margin:0;}
+p,blockquote{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+a{color:inherit;text-decoration:none;}
+
+/* ---------------- Intro banner ---------------- */
+.catalog-intro{
+  background:#151312;color:#f2ece1;padding:64px 24px 52px;text-align:center;
+  border-bottom:1px solid rgba(242,236,225,.12);
+}
+.catalog-intro .k{font-family:'Manrope',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c9a25e;margin-bottom:16px;display:block;}
+.catalog-intro h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:500;max-width:760px;margin:0 auto 14px;}
+.catalog-intro p{color:rgba(242,236,225,.7);max-width:600px;margin:0 auto;font-size:1rem;line-height:1.6;}
+
+/* ---------------- Sticky jump nav ---------------- */
+.jump-nav{
+  position:sticky;top:0;z-index:50;background:#0e0d0c;border-bottom:1px solid rgba(242,236,225,.1);
+  overflow-x:auto;white-space:nowrap;padding:0 18px;
+}
+.jump-nav::-webkit-scrollbar{height:5px;}
+.jump-nav::-webkit-scrollbar-thumb{background:#39332a;border-radius:4px;}
+.jump-nav .row{display:inline-flex;gap:6px;padding:12px 0;}
+.jump-nav a{
+  flex:none;font-family:'Manrope',sans-serif;font-size:.78rem;font-weight:700;color:#cfc7b8;
+  padding:9px 15px;border-radius:999px;border:1px solid rgba(242,236,225,.14);transition:.2s;
+}
+.jump-nav a:hover{border-color:#c9a25e;color:#f2ece1;}
+.jump-nav a b{color:#c9a25e;margin-right:6px;}
+
+/* ---------------- shared style-block scaffolding (variables set per style) ---------------- */
+.style-wrap{
+  padding:96px 24px 104px;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--font-b);
+  position:relative;
+  scroll-margin-top:60px;
+}
+.style-wrap .inner{max-width:1180px;margin:0 auto;}
+
+.style-tag{
+  display:flex;align-items:center;gap:14px;margin-bottom:56px;padding-bottom:22px;
+  border-bottom:1px solid var(--border);
+}
+.style-tag .num{
+  font-family:var(--font-d);font-size:1.5rem;color:var(--accent);flex:none;
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+}
+.style-tag .txt b{display:block;font-family:var(--font-d);font-size:1.15rem;color:var(--fg);}
+.style-tag .txt span{display:block;font-size:.8rem;color:var(--muted);margin-top:2px;}
+
+.eyebrow-d{
+  font-family:var(--font-b);font-weight:700;font-size:.72rem;letter-spacing:var(--tracking,.16em);
+  text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.eyebrow-d::before{content:"";width:24px;height:1px;background:var(--accent);}
+
+/* --- demo hero --- */
+.demo-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;margin-bottom:92px;}
+.demo-hero h2{font-family:var(--font-d);font-size:clamp(1.9rem,3.2vw,2.6rem);line-height:1.15;color:var(--fg);font-weight:var(--h-weight,500);}
+.demo-hero .txt{margin-top:20px;color:var(--muted);font-size:1.02rem;max-width:480px;line-height:1.6;}
+.demo-actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+.demo-btn{padding:14px 26px;font-weight:700;font-size:.92rem;border-radius:var(--btn-radius,999px);transition:transform .25s;display:inline-flex;align-items:center;}
+.demo-btn:hover{transform:translateY(-2px);}
+.demo-btn-primary{background:var(--accent);color:var(--accent-ink);}
+.demo-btn-outline{border:1px solid var(--fg);color:var(--fg);}
+.demo-stats{display:flex;gap:32px;margin-top:46px;flex-wrap:wrap;}
+.demo-stats div b{display:block;font-family:var(--font-d);font-size:1.7rem;color:var(--accent);}
+.demo-stats div span{font-size:.76rem;color:var(--muted);}
+.demo-visual{
+  aspect-ratio:4/3;border-radius:var(--radius);background:var(--surface);
+  border:1px solid var(--border);box-shadow:var(--shadow);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.demo-visual::after{content:"";position:absolute;inset:0;background:var(--visual-pattern,none);}
+.demo-visual .cap{
+  position:relative;z-index:1;font-family:var(--font-b);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:8px 16px;border-radius:999px;
+  background:var(--bg);
+}
+
+/* --- demo testimonials --- */
+.demo-testimonials h3{font-family:var(--font-d);font-size:clamp(1.5rem,2.4vw,2rem);color:var(--fg);font-weight:var(--h-weight,500);}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px;}
+.testi-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px 26px 26px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;
+}
+.testi-card .mark{font-family:var(--font-d);font-size:2.8rem;line-height:1;color:var(--accent);opacity:.55;height:26px;}
+.testi-card blockquote{color:var(--muted);font-size:.92rem;line-height:1.62;flex:1;}
+.testi-stars{color:var(--accent);font-size:.82rem;letter-spacing:2px;}
+.testi-foot{display:flex;align-items:center;gap:12px;margin-top:2px;}
+.testi-avatar{
+  flex:none;width:42px;height:42px;border-radius:50%;background:var(--fg);color:var(--bg);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:.9rem;
+}
+.testi-foot b{display:block;font-size:.88rem;color:var(--fg);}
+.testi-foot small{font-size:.76rem;color:var(--muted);}
+
+@media (max-width:900px){
+  .demo-hero{grid-template-columns:1fr;}
+  .demo-visual{order:-1;}
+  .testi-grid{grid-template-columns:1fr;}
+}
+
+/* ==========================================================================
+   STYLE 1 — Orah i mesing (postojeći sajt / Walnut & Brass)
+   ========================================================================== */
+[data-style="1"]{
+  --bg:#faf7f0; --surface:#f3ede2; --fg:#241a12; --muted:#5b4d3f;
+  --accent:#b08d57; --accent-ink:#191410; --border:rgba(36,26,18,.14);
+  --radius:22px; --shadow:0 20px 44px -26px rgba(25,20,16,.35);
+  --font-d:'Fraunces',serif; --font-b:'Manrope',sans-serif; --btn-radius:999px;
+}
+
+/* ==========================================================================
+   STYLE 2 — Crno-zlatni luksuz (Black & Gold)
+   ========================================================================== */
+[data-style="2"]{
+  --bg:#0d0c0b; --surface:#161412; --fg:#f3ecdd; --muted:#a8a094;
+  --accent:#d4af6a; --accent-ink:#0d0c0b; --border:rgba(212,175,106,.35);
+  --radius:2px; --shadow:none;
+  --font-d:'Playfair Display',serif; --font-b:'Jost',sans-serif; --btn-radius:2px; --tracking:.2em;
+}
+[data-style="2"] .demo-btn-primary{border:1px solid var(--accent);}
+[data-style="2"] .style-tag .num{border-radius:0;}
+[data-style="2"] .eyebrow-d{font-weight:600;}
+[data-style="2"] .demo-hero h2, [data-style="2"] .demo-testimonials h3{letter-spacing:.01em;}
+
+/* ==========================================================================
+   STYLE 3 — Bordo i zlato (Bordeaux & Gold)
+   ========================================================================== */
+[data-style="3"]{
+  --bg:#2b0f14; --surface:#3a151b; --fg:#f6e9df; --muted:#cbaba7;
+  --accent:#cda05a; --accent-ink:#2b0f14; --border:rgba(205,160,90,.28);
+  --radius:16px; --shadow:0 22px 46px -28px rgba(0,0,0,.55);
+  --font-d:'Cormorant Garamond',serif; --h-weight:600;
+  --font-b:'Inter',sans-serif;
+}
+[data-style="3"] .demo-hero h2, [data-style="3"] .demo-testimonials h3{font-style:italic;}
+[data-style="3"] .testi-card .mark{font-style:italic;}
+
+/* ==========================================================================
+   STYLE 4 — Royal Navy Blue & Gold
+   ========================================================================== */
+[data-style="4"]{
+  --bg:#0c1730; --surface:#122048; --fg:#f2f0e8; --muted:#aab3cc;
+  --accent:#c9a24a; --accent-ink:#0c1730; --border:rgba(201,162,74,.32);
+  --radius:10px; --shadow:0 24px 50px -30px rgba(0,0,0,.6);
+  --font-d:'Marcellus',serif; --font-b:'Inter',sans-serif; --btn-radius:999px; --tracking:.18em;
+}
+[data-style="4"] .demo-hero{grid-template-columns:1fr;text-align:center;}
+[data-style="4"] .demo-hero .txt{margin-left:auto;margin-right:auto;}
+[data-style="4"] .demo-actions{justify-content:center;}
+[data-style="4"] .demo-stats{justify-content:center;}
+[data-style="4"] .demo-visual{display:none;}
+[data-style="4"] .eyebrow-d{justify-content:center;}
+[data-style="4"] .eyebrow-d::before{display:none;}
+[data-style="4"] .demo-hero h2::after{content:"";display:block;width:64px;height:1px;background:var(--accent);margin:22px auto 0;}
+
+/* ==========================================================================
+   STYLE 5 — Crno / belo / braon (korporativni minimalizam)
+   ========================================================================== */
+[data-style="5"]{
+  --bg:#ffffff; --surface:#f7f5f2; --fg:#141414; --muted:#6b6b6b;
+  --accent:#6b4a30; --accent-ink:#ffffff; --border:#e2ddd5;
+  --radius:3px; --shadow:none;
+  --font-d:'Fraunces',serif; --font-b:'Inter',sans-serif; --btn-radius:3px; --h-weight:400;
+}
+[data-style="5"] .testi-card{box-shadow:none;}
+[data-style="5"] .demo-visual{border-radius:3px;}
+[data-style="5"] .testi-card .mark{opacity:.3;}
+
+/* ==========================================================================
+   STYLE 6 — Smaragdno zelena & mesing (Emerald & Brass)
+   ========================================================================== */
+[data-style="6"]{
+  --bg:#0e211c; --surface:#153228; --fg:#eef3ee; --muted:#a9c2b7;
+  --accent:#c6a15b; --accent-ink:#0e211c; --border:rgba(198,161,91,.28);
+  --radius:20px; --shadow:0 22px 46px -28px rgba(0,0,0,.5);
+  --font-d:'Fraunces',serif; --font-b:'Manrope',sans-serif; --btn-radius:999px;
+  --visual-pattern:repeating-linear-gradient(120deg, rgba(198,161,91,.06) 0 2px, transparent 2px 22px);
+}
+
+/* ==========================================================================
+   STYLE 7 — Antracit & bakar (Industrial-luxury / Charcoal & Copper)
+   ========================================================================== */
+[data-style="7"]{
+  --bg:#1c1c1c; --surface:#242424; --fg:#f1efec; --muted:#a3a19c;
+  --accent:#c1703f; --accent-ink:#1c1c1c; --border:rgba(193,112,63,.3);
+  --radius:6px; --shadow:none;
+  --font-d:'Bodoni Moda',serif; --font-b:'Jost',sans-serif; --btn-radius:6px; --tracking:.16em;
+  --visual-pattern:repeating-linear-gradient(0deg, rgba(241,239,236,.05) 0 1px, transparent 1px 28px),
+                    repeating-linear-gradient(90deg, rgba(241,239,236,.05) 0 1px, transparent 1px 28px);
+}
+[data-style="7"] .demo-stats div b{font-family:'Jost',sans-serif;font-weight:700;}
+
+/* ==========================================================================
+   STYLE 8 — Krem & terakota (Meki minimalizam / Cream & Terracotta)
+   ========================================================================== */
+[data-style="8"]{
+  --bg:#fbf4ea; --surface:#ffffff; --fg:#3a2a20; --muted:#8b7768;
+  --accent:#c1704f; --accent-ink:#fbf4ea; --border:transparent;
+  --radius:32px; --shadow:0 26px 50px -30px rgba(58,42,32,.22);
+  --font-d:'Cormorant Garamond',serif; --font-b:'Jost',sans-serif; --btn-radius:999px; --h-weight:600;
+}
+[data-style="8"] .style-tag{border-bottom-color:rgba(58,42,32,.14);}
+[data-style="8"] .style-tag .num{border-color:rgba(58,42,32,.3);}
+
+/* ==========================================================================
+   STYLE 9 — Slonovača & crna (Editorial monochrome)
+   ========================================================================== */
+[data-style="9"]{
+  --bg:#f5f2ec; --surface:transparent; --fg:#0f0f0f; --muted:#5a5a5a;
+  --accent:#0f0f0f; --accent-ink:#f5f2ec; --border:#0f0f0f;
+  --radius:0px; --shadow:none;
+  --font-d:'Bodoni Moda',serif; --font-b:'Inter',sans-serif; --btn-radius:0px; --tracking:.22em; --h-weight:500;
+}
+[data-style="9"] .demo-hero{grid-template-columns:.85fr 1.15fr;}
+[data-style="9"] .demo-btn-primary{background:transparent;color:var(--fg);border:1px solid var(--fg);}
+[data-style="9"] .demo-btn-outline{border:none;text-decoration:underline;padding-left:0;}
+[data-style="9"] .testi-card{border:none;border-top:2px solid var(--fg);border-radius:0;padding-left:0;padding-right:0;}
+[data-style="9"] .testi-card .mark{font-size:4rem;opacity:1;}
+[data-style="9"] .testi-avatar{border-radius:0;}
+[data-style="9"] .style-tag .num{border-radius:0;}
+
+/* ==========================================================================
+   STYLE 10 — Tamno ljubičasta & zlato (Regal Plum & Gold)
+   ========================================================================== */
+[data-style="10"]{
+  --bg:radial-gradient(120% 140% at 10% 0%, #2c1240 0%, #180a24 60%);
+  --surface:#241338; --fg:#f3ecff; --muted:#c3b3dd;
+  --accent:#d7b567; --accent-ink:#180a24; --border:rgba(215,181,103,.28);
+  --radius:18px; --shadow:0 26px 54px -30px rgba(0,0,0,.6);
+  --font-d:'Playfair Display',serif; --font-b:'Manrope',sans-serif; --btn-radius:999px;
+}
+[data-style="10"] .demo-hero h2{
+  background:linear-gradient(100deg,#f3ecff,#d7b567 55%,#f3ecff);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+[data-style="10"] .style-tag::after{content:"◆";color:var(--accent);margin-left:auto;font-size:.8rem;}
+
+/* ---------------- footer note ---------------- */
+.catalog-foot{background:#0e0d0c;color:rgba(242,236,225,.55);text-align:center;padding:40px 24px;font-size:.82rem;font-family:'Manrope',sans-serif;}
+.catalog-foot b{color:#c9a25e;}
+</style>
+</head>
+<body>
+
+<div class="catalog-intro">
+  <span class="k">Interni dokument — nije deo javnog sajta</span>
+  <h1>Katalog stilova za Unikat Nameštaj</h1>
+  <p>Ista dva bloka sadržaja — hero i utisci klijenata — provučena kroz deset različitih kombinacija boja i tipografije, da bismo lakše izabrali pravac za ceo sajt.</p>
+</div>
+
+<nav class="jump-nav">
+  <div class="row">
+    <a href="#style-1"><b>01</b>Orah i mesing</a>
+    <a href="#style-2"><b>02</b>Crno-zlatni luksuz</a>
+    <a href="#style-3"><b>03</b>Bordo i zlato</a>
+    <a href="#style-4"><b>04</b>Royal Navy</a>
+    <a href="#style-5"><b>05</b>Crno / belo / braon</a>
+    <a href="#style-6"><b>06</b>Smaragd i mesing</a>
+    <a href="#style-7"><b>07</b>Antracit i bakar</a>
+    <a href="#style-8"><b>08</b>Krem i terakota</a>
+    <a href="#style-9"><b>09</b>Slonovača editorijal</a>
+    <a href="#style-10"><b>10</b>Ljubičasto i zlato</a>
+  </div>
+</nav>
+
+<!-- ============ STYLE 1 ============ -->
+<section class="style-wrap" data-style="1" id="style-1">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">01</span>
+      <div class="txt"><b>Orah i mesing</b><span>Fraunces + Manrope · topao radionički luksuz (trenutni stil sajta)</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 2 ============ -->
+<section class="style-wrap" data-style="2" id="style-2">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">02</span>
+      <div class="txt"><b>Crno-zlatni luksuz</b><span>Playfair Display + Jost · oštre linije, tanke zlatne konture</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 3 ============ -->
+<section class="style-wrap" data-style="3" id="style-3">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">03</span>
+      <div class="txt"><b>Bordo i zlato</b><span>Cormorant Garamond + Inter · duboka bordo, italik naslovi</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 4 ============ -->
+<section class="style-wrap" data-style="4" id="style-4">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">04</span>
+      <div class="txt"><b>Royal Navy Blue</b><span>Marcellus + Inter · granatno plava, simetrična, zlatni akcenti</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 5 ============ -->
+<section class="style-wrap" data-style="5" id="style-5">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">05</span>
+      <div class="txt"><b>Crno / belo / braon</b><span>Fraunces + Inter · korporativni minimalizam, bez senki</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 6 ============ -->
+<section class="style-wrap" data-style="6" id="style-6">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">06</span>
+      <div class="txt"><b>Smaragd i mesing</b><span>Fraunces + Manrope · duboko zelena, botanički luksuz</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 7 ============ -->
+<section class="style-wrap" data-style="7" id="style-7">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">07</span>
+      <div class="txt"><b>Antracit i bakar</b><span>Bodoni Moda + Jost · industrijski luksuz, blueprint tekstura</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 8 ============ -->
+<section class="style-wrap" data-style="8" id="style-8">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">08</span>
+      <div class="txt"><b>Krem i terakota</b><span>Cormorant Garamond + Jost · meki minimalizam, mnogo belog prostora</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 9 ============ -->
+<section class="style-wrap" data-style="9" id="style-9">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">09</span>
+      <div class="txt"><b>Slonovača — editorijal</b><span>Bodoni Moda + Inter · magazinski, crno-belo, oštri uglovi</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STYLE 10 ============ -->
+<section class="style-wrap" data-style="10" id="style-10">
+  <div class="inner">
+    <div class="style-tag">
+      <span class="num">10</span>
+      <div class="txt"><b>Ljubičasto i zlato</b><span>Playfair Display + Manrope · kraljevska, dragulj-paleta</span></div>
+    </div>
+
+    <div class="demo-hero">
+      <div>
+        <div class="eyebrow-d">Radionica nameštaja po meri</div>
+        <h2>Nameštaj koji je mera vašeg prostora, ne kompromisa</h2>
+        <p class="txt">Svaki komad projektujemo, sečemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.</p>
+        <div class="demo-actions">
+          <a class="demo-btn demo-btn-primary" href="#">Istražite kategorije</a>
+          <a class="demo-btn demo-btn-outline" href="#">Zakažite izmeru</a>
+        </div>
+        <div class="demo-stats">
+          <div><b>12</b><span>godina rada</span></div>
+          <div><b>640+</b><span>izrađenih komada</span></div>
+          <div><b>100%</b><span>po meri</span></div>
+        </div>
+      </div>
+      <div class="demo-visual"><span class="cap">Fotografija enterijera</span></div>
+    </div>
+
+    <div class="demo-testimonials">
+      <h3>Šta kažu naši klijenti</h3>
+      <div class="testi-grid">
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Ormar je uklopljen u milimetar, a unutrašnjost je baš onako kako smo je zamislili.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">MJ</span><span><b>Milica J.</b><small>Ormar i garderober, Beograd</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Kuhinja izgleda bolje uživo nego na 3D prikazu. Prvo su pitali kako kuvamo, tek onda predložili rešenje.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">NP</span><span><b>Nemanja P.</b><small>Kuhinja po meri, Novi Sad</small></span></div></div>
+        <div class="testi-card"><span class="mark">&ldquo;</span><blockquote>Sofa i TV komoda u istom materijalu izgledaju kao da su oduvek pripadale toj sobi.</blockquote><div class="testi-stars">★★★★★</div><div class="testi-foot"><span class="testi-avatar">AT</span><span><b>Ana T.</b><small>Dnevna soba, Zemun</small></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="catalog-foot">Katalog stilova · <b>Unikat Nameštaj</b> · napravljeno za internu diskusiju o dizajn pravcu</div>
+
+</body>
+</html>
