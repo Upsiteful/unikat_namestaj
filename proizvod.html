@@ -43,7 +43,9 @@
 <header class="site-header">
   <div class="wrap">
     <a href="index.html" class="logo">
-      <span class="logo-mark">U</span>
+      <span class="logo-mark">
+        <img src="logo.png" alt="Unikat Nameštaj logo" width="40" height="40"  class = "logo">
+      </span>
       <span><strong>Unikat</strong><span>Nameštaj</span></span>
     </a>
     <nav class="main-nav">
@@ -85,25 +87,83 @@
 <section class="product-detail">
   <div class="wrap">
     <div class="pd-media">
-      <div class="frame">
-        <img src="" alt="">
-      </div>
+  <div class="frame">
+    <div class="product-visual" id="productVisual">
+      <img
+        class="product-layer product-layer-base"
+        id="productBase"
+        src=""
+        alt=""
+      >
+
+      <img
+        class="product-layer product-layer-body"
+        id="productBodyLayer"
+        src=""
+        alt=""
+      >
+
+      <img
+        class="product-layer product-layer-accent"
+        id="productAccentLayer"
+        src=""
+        alt=""
+      >
     </div>
+  </div>
+</div>
     <div class="pd-info">
       <h1></h1>
       <div class="pd-price"></div>
 
       <div class="pd-colors">
-        <div class="pd-colors-head">
-          <b data-i18n="product_color_label">Boja</b>
-          <span class="pd-color-active"><span class="dot"></span><span class="name"></span><span class="code"></span></span>
-        </div>
-        <div class="color-search">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" id="colorSearch" data-i18n-placeholder="color_search_placeholder" placeholder="Pretražite šifru ili naziv boje (npr. NV-02)">
-        </div>
-        <div class="color-swatches" id="colorSwatches"><!-- filled by JS from COLORS --></div>
-        <p class="color-empty" data-i18n="color_no_results" hidden>Nema boje pod tom šifrom ili nazivom.</p>
+        <div class="pd-configurator">
+  <div class="pd-colors" data-zone-block="body">
+    <div class="pd-colors-head">
+      <b class="zone-label">Boja frontova</b>
+
+      <span class="pd-color-active">
+        <span class="dot"></span>
+        <span class="name"></span>
+        <span class="code"></span>
+      </span>
+    </div>
+
+    <div class="color-search">
+      <input
+        type="text"
+        class="zone-search"
+        placeholder="Pretražite boju ili šifru"
+      >
+    </div>
+
+    <div class="color-swatches zone-swatches"></div>
+    <p class="color-empty" hidden>Nema rezultata.</p>
+  </div>
+
+  <div class="pd-colors" data-zone-block="accent">
+    <div class="pd-colors-head">
+      <b class="zone-label">Drveni detalji</b>
+
+      <span class="pd-color-active">
+        <span class="dot"></span>
+        <span class="name"></span>
+        <span class="code"></span>
+      </span>
+    </div>
+
+    <div class="color-search">
+      <input
+        type="text"
+        class="zone-search"
+        placeholder="Pretražite materijal ili šifru"
+      >
+    </div>
+
+    <div class="color-swatches zone-swatches"></div>
+    <p class="color-empty" hidden>Nema rezultata.</p>
+  </div>
+</div>
       </div>
 
       <p class="pd-desc"></p>
@@ -171,7 +231,9 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="logo">
-          <span class="logo-mark">U</span>
+          <span class="logo-mark">
+        <img src="logo.png" alt="Unikat Nameštaj logo" width="40" height="40" style="border-radius: 50%;" class="logo">
+      </span>
           <span><strong>Unikat</strong><span>Nameštaj</span></span>
         </a>
         <p data-i18n="footer_tagline">Nameštaj po meri, izrađen ručno u Beogradu.</p>
