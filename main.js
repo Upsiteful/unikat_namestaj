@@ -360,158 +360,1472 @@ function initCategoryPage(){
 /* Derives the base illustration name from a product's icon path,
    e.g. "images/configurator/ormar.svg" -> "ormar", so we can look up
    the matching per-color file in images/configurator/colors/. */
-function shapeKeyFromIcon(iconPath){
-  const file = iconPath.split("/").pop();
-  return file.replace(/\.[a-z0-9]+$/i, "");
+
+
+
+
+
+
+
+/* ---------------- Product detail page ---------------- */
+
+function initCombinationConfigurator(product){
+
+  const config = product.configurator;
+
+  if(!config || !config.zones){
+    return;
+  }
+
+  const preview =
+    document.querySelector("#combinationPreview");
+
+  const root =
+    document.querySelector(".pd-configurator");
+
+  if(!preview || !root){
+    return;
+  }
+
+
+  const selected = {};
+
+
+  const bodyField =
+    document.querySelector(
+      '.pd-order input[name="bodyColor"]'
+    );
+
+  const accentField =
+    document.querySelector(
+      '.pd-order input[name="accentColor"]'
+    );
+
+
+
+  /* =====================================================
+     PUTANJA DO TRENUTNE KOMBINACIJE
+
+     Primer:
+
+     F186-ST9_H1176-ST37.png
+     ===================================================== */
+
+  function combinationImagePath(){
+
+    if(!selected.body || !selected.accent){
+      return "";
+    }
+
+    return (
+  config.imageFolder +
+  "kitchen" +
+  selected.body.code +
+  "_" +
+  selected.accent.code +
+  "." +
+  (config.imageExtension || "png")
+);
+
+  }
+
+
+
+  /* =====================================================
+     MENJANJE GLAVNE SLIKE
+     ===================================================== */
+
+  function updatePreview(){
+
+    const src =
+      combinationImagePath();
+
+    if(!src){
+      return;
+    }
+
+
+    preview.onerror = function(){
+
+      this.onerror = null;
+
+      console.warn(
+        "Nedostaje kombinacija:",
+        src
+      );
+
+
+      /*
+        Dok još praviš kombinacije,
+        ako neka slika ne postoji,
+        vrati osnovnu sliku proizvoda.
+      */
+
+      if(product.icon){
+
+        const fallback =
+          new URL(
+            product.icon,
+            document.baseURI
+          ).href;
+
+        if(this.src !== fallback){
+          this.src = product.icon;
+        }
+
+      }
+
+    };
+
+
+    preview.src = src;
+
+  }
+
+
+
+  /* =====================================================
+     UPIS IZABRANIH DEKORA U FORMU
+     ===================================================== */
+
+  function updateOrderFields(){
+
+    if(bodyField && selected.body){
+
+      bodyField.value =
+        `${selected.body.label || selected.body.code} (${selected.body.code})`;
+
+    }
+
+
+    if(accentField && selected.accent){
+
+      accentField.value =
+        `${selected.accent.label || selected.accent.code} (${selected.accent.code})`;
+
+    }
+
+  }
+
+
+
+  /* =====================================================
+     IZGLED MALOG UZORKA
+     ===================================================== */
+
+  function swatchStyle(option){
+
+    const fallback =
+      option.hex || "#d9d3ca";
+
+
+    if(option.texture){
+
+      return [
+        `background-color:${fallback}`,
+        `background-image:url('${option.texture}')`,
+        "background-size:cover",
+        "background-position:center",
+        "background-repeat:no-repeat"
+      ].join(";");
+
+    }
+
+
+    return `background:${fallback}`;
+
+  }
+
+
+
+  /* =====================================================
+     UPDATE IZGLEDA JEDNOG SWITCHERA
+     ===================================================== */
+
+  function updateZoneInterface(
+    zoneKey,
+    option
+  ){
+
+    const block =
+      document.querySelector(
+        `[data-zone-block="${zoneKey}"]`
+      );
+
+
+    if(!block){
+      return;
+    }
+
+
+    const lang =
+      getLang();
+
+
+    const dot =
+      block.querySelector(
+        ".pd-color-active .dot"
+      );
+
+
+    const name =
+      block.querySelector(
+        ".pd-color-active .name"
+      );
+
+
+    const code =
+      block.querySelector(
+        ".pd-color-active .code"
+      );
+
+
+
+    if(dot){
+
+      dot.style.backgroundColor =
+        option.hex || "#d9d3ca";
+
+
+      dot.style.backgroundImage =
+        option.texture
+          ? `url("${option.texture}")`
+          : "";
+
+
+      dot.style.backgroundSize =
+        "cover";
+
+
+      dot.style.backgroundPosition =
+        "center";
+
+    }
+
+
+
+    if(name){
+
+      name.textContent =
+        pickLang(
+          option.name,
+          lang
+        );
+
+    }
+
+
+
+    if(code){
+
+      code.textContent =
+        option.code;
+
+    }
+
+
+
+    block
+      .querySelectorAll(".swatch-btn")
+      .forEach(button => {
+
+        button.classList.toggle(
+
+          "active",
+
+          button.dataset.code ===
+          option.code
+
+        );
+
+      });
+
+  }
+
+
+
+  /* =====================================================
+     SEARCH
+     ===================================================== */
+
+  function filterZone(
+    zoneKey,
+    query
+  ){
+
+    const zone =
+      config.zones[zoneKey];
+
+
+    const block =
+      document.querySelector(
+        `[data-zone-block="${zoneKey}"]`
+      );
+
+
+    if(!zone || !block){
+      return;
+    }
+
+
+    const q =
+      query
+        .trim()
+        .toLowerCase();
+
+
+    const lang =
+      getLang();
+
+
+    let visible = 0;
+
+
+
+    block
+      .querySelectorAll(".swatch-btn")
+      .forEach(button => {
+
+        const option =
+          zone.options.find(
+            item =>
+              item.code ===
+              button.dataset.code
+          );
+
+
+        if(!option){
+          return;
+        }
+
+
+        const haystack =
+          (
+            option.code +
+            " " +
+            pickLang(
+              option.name,
+              lang
+            )
+          ).toLowerCase();
+
+
+        const match =
+          !q ||
+          haystack.includes(q);
+
+
+        button.hidden =
+          !match;
+
+
+        if(match){
+          visible++;
+        }
+
+      });
+
+
+
+    const empty =
+      block.querySelector(
+        ".color-empty"
+      );
+
+
+    if(empty){
+
+      empty.hidden =
+        visible !== 0;
+
+    }
+
+  }
+
+
+
+  /* =====================================================
+     GENERISANJE SWITCHERA
+     ===================================================== */
+
+  function renderZone(
+    zoneKey,
+    zone
+  ){
+
+    const block =
+      document.querySelector(
+        `[data-zone-block="${zoneKey}"]`
+      );
+
+
+    if(!block){
+      return;
+    }
+
+
+    const lang =
+      getLang();
+
+
+    const label =
+      block.querySelector(
+        ".zone-label"
+      );
+
+
+    const swatches =
+      block.querySelector(
+        ".zone-swatches"
+      );
+
+
+    const search =
+      block.querySelector(
+        ".zone-search"
+      );
+
+
+
+    if(label){
+
+      label.textContent =
+        pickLang(
+          zone.label,
+          lang
+        );
+
+    }
+
+
+
+    if(swatches){
+
+      swatches.innerHTML =
+
+        zone.options
+          .map(option => `
+
+            <button
+
+              type="button"
+
+              class="
+                swatch-btn
+                ${
+                  selected[zoneKey]?.code ===
+                  option.code
+                    ? "active"
+                    : ""
+                }
+              "
+
+              data-zone="${zoneKey}"
+
+              data-code="${option.code}"
+
+              title="
+                ${pickLang(
+                  option.name,
+                  lang
+                )}
+                —
+                ${option.code}
+              "
+
+              aria-label="
+                ${pickLang(
+                  option.name,
+                  lang
+                )}
+              "
+
+            >
+
+              <span
+
+                class="swatch-fill"
+
+                style="${swatchStyle(option)}"
+
+              ></span>
+
+            </button>
+
+          `)
+          .join("");
+
+    }
+
+
+
+    if(
+      search &&
+      !search.dataset.bound
+    ){
+
+      search.dataset.bound =
+        "1";
+
+
+      search.addEventListener(
+        "input",
+        () => {
+
+          filterZone(
+            zoneKey,
+            search.value
+          );
+
+        }
+      );
+
+    }
+
+
+
+    if(search){
+
+      filterZone(
+        zoneKey,
+        search.value || ""
+      );
+
+    }
+
+  }
+
+
+
+  /* =====================================================
+     RENDER OBA SWITCHERA
+     ===================================================== */
+
+  function renderAllZones(){
+
+    Object.entries(
+      config.zones
+    )
+    .forEach(
+      ([zoneKey, zone]) => {
+
+        renderZone(
+          zoneKey,
+          zone
+        );
+
+
+        if(selected[zoneKey]){
+
+          updateZoneInterface(
+            zoneKey,
+            selected[zoneKey]
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+
+  /* =====================================================
+     DEFAULT VREDNOSTI
+     ===================================================== */
+
+  Object.entries(
+    config.zones
+  )
+  .forEach(
+    ([zoneKey, zone]) => {
+
+      selected[zoneKey] =
+
+        zone.options.find(
+          option =>
+            option.code ===
+            zone.default
+        )
+
+        ||
+
+        zone.options[0];
+
+    }
+  );
+
+
+
+  /* =====================================================
+     KLIK NA BILO KOJI UZORAK
+     ===================================================== */
+
+  root.addEventListener(
+    "click",
+    event => {
+
+      const button =
+        event.target.closest(
+          ".swatch-btn"
+        );
+
+
+      if(!button){
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      const zoneKey =
+        button.dataset.zone;
+
+
+      const zone =
+        config.zones[zoneKey];
+
+
+      if(!zone){
+        return;
+      }
+
+
+      const option =
+        zone.options.find(
+          item =>
+            item.code ===
+            button.dataset.code
+        );
+
+
+      if(!option){
+        return;
+      }
+
+
+
+      selected[zoneKey] =
+        option;
+
+
+
+      updateZoneInterface(
+        zoneKey,
+        option
+      );
+
+
+      updateOrderFields();
+
+
+      updatePreview();
+
+    }
+  );
+
+
+
+  renderAllZones();
+
+  updateOrderFields();
+
+  updatePreview();
+
+
+
+  document.addEventListener(
+    "langchange",
+    renderAllZones
+  );
+
 }
+
+
+
+
 
 function initProductPage(){
-  const root = document.querySelector(".product-detail");
-  if(!root) return;
-  const params = new URLSearchParams(location.search);
-  const id = params.get("id");
-  const product = PRODUCTS.find(p=>p.id===id) || PRODUCTS[0];
-  const category = CATEGORIES.find(c=>c.id===product.cat);
-  const baseShape = shapeKeyFromIcon(product.icon);
 
-  const palette = (product.colors && product.colors.length) ? product.colors : COLORS;
-  let selectedColor = palette[0];
+  const root =
+    document.querySelector(
+      ".product-detail"
+    );
 
-  const orderColorField = document.querySelector(".pd-order input[name='color']");
 
-  function colorImagePath(color){
-    // A color can carry its own explicit `image` (real product photo, once available).
-    // Otherwise we fall back to the generated per-shape/per-color illustration.
-    return color.image || `images/configurator/colors/${baseShape}-${color.code}.svg`;
+  if(!root){
+    return;
   }
 
-  function applyColor(color){
-    selectedColor = color;
-    const img = document.querySelector(".pd-media img");
-    if(img){
-      img.src = colorImagePath(color);
-      // if a color-specific image doesn't exist yet, fall back to the base product photo
-      img.onerror = function(){ this.onerror = null; this.src = product.icon; };
-    }
-    const lang = getLang();
-    const activeDot = document.querySelector(".pd-color-active .dot");
-    const activeName = document.querySelector(".pd-color-active .name");
-    const activeCode = document.querySelector(".pd-color-active .code");
-    if(activeDot) activeDot.style.background = color.hex;
-    if(activeName) activeName.textContent = pickLang(color.name, lang);
-    if(activeCode) activeCode.textContent = color.code;
-    document.querySelectorAll(".swatch-btn").forEach(btn=>{
-      btn.classList.toggle("active", btn.dataset.code === color.code);
-    });
-    if(orderColorField) orderColorField.value = `${pickLang(color.name,"sr")} (${color.code})`;
-  }
 
-  function renderSwatches(){
-  const wrap = document.querySelector("#colorSwatches");
-  if(!wrap) return;
 
-  const lang = getLang();
+  const params =
+    new URLSearchParams(
+      location.search
+    );
 
-  wrap.innerHTML = palette.map(c=>`
-    <button
-      type="button"
-      class="swatch-btn ${c.code === selectedColor.code ? "active" : ""}"
-      data-code="${c.code}"
-      style="--swatch:${c.hex};"
-      title="${pickLang(c.name, lang)} — ${c.code}"
-      aria-label="${pickLang(c.name, lang)}"
-    >
-      <span class="swatch-fill"></span>
-    </button>
-  `).join("");
 
-  wrap.querySelectorAll(".swatch-btn").forEach(btn=>{
-    btn.addEventListener("click", e=>{
-      e.preventDefault();
+  const id =
+    params.get("id");
 
-      const color = palette.find(c => c.code === btn.dataset.code);
 
-      if(color){
-        applyColor(color);
-      }
-    });
-  });
-}
+  const product =
+    PRODUCTS.find(
+      p => p.id === id
+    )
+    ||
+    PRODUCTS[0];
 
-  function filterSwatches(query){
-    const q = query.trim().toLowerCase();
-    const emptyMsg = document.querySelector(".color-empty");
-    let visibleCount = 0;
-    document.querySelectorAll(".swatch-btn").forEach(btn=>{
-      const c = palette.find(p=>p.code===btn.dataset.code);
-      const lang = getLang();
-      const haystack = (c.code + " " + pickLang(c.name, lang)).toLowerCase();
-      const match = !q || haystack.includes(q);
-      btn.style.display = match ? "" : "none";
-      if(match) visibleCount++;
-    });
-    if(emptyMsg) emptyMsg.hidden = visibleCount !== 0;
-  }
+
+  const category =
+    CATEGORIES.find(
+      c => c.id === product.cat
+    );
+
+
 
   function render(){
-    const lang = getLang();
-    document.title = pickLang(product.name, lang) + " — Unikat Nameštaj";
-    document.querySelector(".breadcrumb .current").textContent = pickLang(product.name, lang);
-    document.querySelector(".breadcrumb .cat-crumb").textContent = pickLang(category.name, lang);
-    document.querySelector(".breadcrumb .cat-crumb").href = `kategorija.html?kat=${category.id}`;
-    document.querySelector(".pd-media img").alt = pickLang(product.name, lang);
-    document.querySelector(".pd-info h1").textContent = pickLang(product.name, lang);
-    document.querySelector(".pd-desc").textContent = pickLang(product.desc, lang);
-    document.querySelector(".pd-price").innerHTML = `<small>${(I18N[lang]||I18N.sr).product_price_label}</small>€${product.price}`;
-    document.querySelector('[data-spec="material"] span').textContent = pickLang(product.material, lang);
-    document.querySelector('[data-spec="dims"] span').textContent = product.dims;
-    document.querySelector(".pd-order input[name='product']").value = pickLang(product.name, "sr") + " (" + product.id + ")";
 
-    renderSwatches();
-    applyColor(selectedColor);
-    const searchInput = document.querySelector("#colorSearch");
-    if(searchInput) filterSwatches(searchInput.value || "");
+    const lang =
+      getLang();
 
-    const related = PRODUCTS.filter(p=>p.cat===product.cat && p.id!==product.id).slice(0,3);
-    const relGrid = document.querySelector(".related .product-grid");
-    if(relGrid){
-      relGrid.innerHTML = related.map(p=>`
-        <a class="product-card reveal" href="proizvod.html?id=${p.id}">
-          <div class="product-media">
-            <span class="tag">${pickLang(category.name, lang)}</span>
-            <img src="${p.icon}" alt="${pickLang(p.name,lang)}">
-          </div>
-          <div class="product-body">
-            <h3>${pickLang(p.name, lang)}</h3>
-            <div class="material">${pickLang(p.material, lang)}</div>
-            <div class="product-foot">
-              <div class="product-price"><small>${(I18N[lang]||I18N.sr).cat_page_from}</small>€${p.price}</div>
-              <span class="mini-link">${(I18N[lang]||I18N.sr).cat_page_view}</span>
-            </div>
-          </div>
-        </a>
-      `).join("");
+
+
+    document.title =
+      pickLang(
+        product.name,
+        lang
+      )
+      +
+      " — Unikat Nameštaj";
+
+
+
+    const currentCrumb =
+      document.querySelector(
+        ".breadcrumb .current"
+      );
+
+
+    if(currentCrumb){
+
+      currentCrumb.textContent =
+        pickLang(
+          product.name,
+          lang
+        );
+
     }
+
+
+
+    const catCrumb =
+      document.querySelector(
+        ".breadcrumb .cat-crumb"
+      );
+
+
+    if(catCrumb){
+
+      catCrumb.textContent =
+        pickLang(
+          category.name,
+          lang
+        );
+
+
+      catCrumb.href =
+        `kategorija.html?kat=${category.id}`;
+
+    }
+
+
+
+    const preview =
+      document.querySelector(
+        "#combinationPreview"
+      );
+
+
+    if(preview){
+
+      preview.alt =
+        pickLang(
+          product.name,
+          lang
+        );
+
+    }
+
+
+
+    const title =
+      document.querySelector(
+        ".pd-info h1"
+      );
+
+
+    if(title){
+
+      title.textContent =
+        pickLang(
+          product.name,
+          lang
+        );
+
+    }
+
+
+
+    const desc =
+      document.querySelector(
+        ".pd-desc"
+      );
+
+
+    if(desc){
+
+      desc.textContent =
+        pickLang(
+          product.desc,
+          lang
+        );
+
+    }
+
+
+
+    const price =
+      document.querySelector(
+        ".pd-price"
+      );
+
+
+    if(price){
+
+      price.innerHTML =
+
+        `<small>
+          ${
+            (
+              I18N[lang]
+              ||
+              I18N.sr
+            ).product_price_label
+          }
+        </small>
+        €${product.price}`;
+
+    }
+
+
+
+    const material =
+      document.querySelector(
+        '[data-spec="material"] span'
+      );
+
+
+    if(material){
+
+      material.textContent =
+        pickLang(
+          product.material,
+          lang
+        );
+
+    }
+
+
+
+    const dims =
+      document.querySelector(
+        '[data-spec="dims"] span'
+      );
+
+
+    if(dims){
+
+      dims.textContent =
+        product.dims;
+
+    }
+
+
+
+    const productField =
+      document.querySelector(
+        ".pd-order input[name='product']"
+      );
+
+
+    if(productField){
+
+      productField.value =
+
+        `${pickLang(
+          product.name,
+          "sr"
+        )} (${product.id})`;
+
+    }
+
+
+
+    const related =
+
+      PRODUCTS
+
+        .filter(
+          p =>
+            p.cat === product.cat
+            &&
+            p.id !== product.id
+        )
+
+        .slice(
+          0,
+          3
+        );
+
+
+
+    const relGrid =
+      document.querySelector(
+        ".related .product-grid"
+      );
+
+
+
+    if(relGrid){
+
+      relGrid.innerHTML =
+
+        related
+          .map(p => `
+
+            <a
+              class="product-card reveal"
+              href="proizvod.html?id=${p.id}"
+            >
+
+              <div class="product-media">
+
+                <span class="tag">
+
+                  ${pickLang(
+                    category.name,
+                    lang
+                  )}
+
+                </span>
+
+
+                <img
+                  src="${p.icon}"
+                  alt="${pickLang(
+                    p.name,
+                    lang
+                  )}"
+                  loading="lazy"
+                >
+
+              </div>
+
+
+              <div class="product-body">
+
+                <h3>
+
+                  ${pickLang(
+                    p.name,
+                    lang
+                  )}
+
+                </h3>
+
+
+                <div class="material">
+
+                  ${pickLang(
+                    p.material,
+                    lang
+                  )}
+
+                </div>
+
+
+                <div class="product-foot">
+
+                  <div class="product-price">
+
+                    <small>
+
+                      ${
+                        (
+                          I18N[lang]
+                          ||
+                          I18N.sr
+                        ).cat_page_from
+                      }
+
+                    </small>
+
+                    €${p.price}
+
+                  </div>
+
+
+                  <span class="mini-link">
+
+                    ${
+                      (
+                        I18N[lang]
+                        ||
+                        I18N.sr
+                      ).cat_page_view
+                    }
+
+                  </span>
+
+                </div>
+
+              </div>
+
+            </a>
+
+          `)
+          .join("");
+
+    }
+
+
+
     initReveal();
+
   }
 
-  const swatchesWrap = document.querySelector("#colorSwatches");
-  if(swatchesWrap){
-    swatchesWrap.addEventListener("click", (e)=>{
-      const btn = e.target.closest(".swatch-btn");
-      if(!btn) return;
-      const color = palette.find(c=>c.code===btn.dataset.code);
-      if(color) applyColor(color);
-    });
-  }
-  const searchInput = document.querySelector("#colorSearch");
-  if(searchInput){
-    searchInput.addEventListener("input", ()=> filterSwatches(searchInput.value));
-  }
+
 
   render();
-  document.addEventListener("langchange", render);
+
+
+  initCombinationConfigurator(
+    product
+  );
+
+
+  document.addEventListener(
+    "langchange",
+    render
+  );
+
 }
+
+
+
+
+
+
+
+
+
+
+   // function shapeKeyFromIcon(iconPath){
+//   const file = iconPath.split("/").pop();
+//   return file.replace(/\.[a-z0-9]+$/i, "");
+// }
+// function initLayeredConfigurator(product) {
+//   const config = product.configurator;
+
+//   if (!config || !config.zones) {
+//     return;
+//   }
+
+//   const baseImage = document.querySelector("#productBase");
+//   const bodyImage = document.querySelector("#productBodyLayer");
+//   const accentImage = document.querySelector("#productAccentLayer");
+
+//   const layerElements = {
+//     body: bodyImage,
+//     accent: accentImage
+//   };
+
+//   const selected = {};
+
+//   if (baseImage) {
+//     baseImage.src = config.baseImage;
+//     baseImage.alt = pickLang(product.name, getLang());
+//   }
+
+//   Object.entries(config.zones).forEach(([zoneKey, zone]) => {
+//     const defaultOption =
+//       zone.options.find(option => option.code === zone.default) ||
+//       zone.options[0];
+
+//     selected[zoneKey] = defaultOption;
+
+//     renderZone(zoneKey, zone);
+//     applyZoneOption(zoneKey, defaultOption);
+//   });
+
+//   function renderZone(zoneKey, zone) {
+//     const block = document.querySelector(
+//       `[data-zone-block="${zoneKey}"]`
+//     );
+
+//     if (!block) {
+//       return;
+//     }
+
+//     const lang = getLang();
+//     const label = block.querySelector(".zone-label");
+//     const swatches = block.querySelector(".zone-swatches");
+//     const search = block.querySelector(".zone-search");
+
+//     if (label) {
+//       label.textContent = pickLang(zone.label, lang);
+//     }
+
+//     if (swatches) {
+//       swatches.innerHTML = zone.options.map(option => {
+//         const swatchStyle = option.texture
+//           ? `background-image:url('${option.texture}')`
+//           : `background:${option.hex}`;
+
+//         return `
+//           <button
+//             type="button"
+//             class="swatch-btn"
+//             data-zone="${zoneKey}"
+//             data-code="${option.code}"
+//             title="${pickLang(option.name, lang)} — ${option.code}"
+//             aria-label="${pickLang(option.name, lang)}"
+//           >
+//             <span
+//               class="swatch-fill"
+//               style="${swatchStyle}"
+//             ></span>
+//           </button>
+//         `;
+//       }).join("");
+//     }
+
+//     if (search) {
+//       search.addEventListener("input", () => {
+//         filterZoneOptions(zoneKey, search.value);
+//       });
+//     }
+//   }
+
+//   function applyZoneOption(zoneKey, option) {
+//     const imageElement = layerElements[zoneKey];
+
+//     if (!imageElement || !option) {
+//       return;
+//     }
+
+//     selected[zoneKey] = option;
+//     imageElement.src = option.image;
+
+//     imageElement.onerror = function () {
+//       this.onerror = null;
+//       console.error(
+//         `Nedostaje slika za zonu ${zoneKey}: ${option.image}`
+//       );
+//     };
+
+//     updateZoneInterface(zoneKey, option);
+//     updateOrderFields();
+//   }
+
+//   function updateZoneInterface(zoneKey, option) {
+//     const block = document.querySelector(
+//       `[data-zone-block="${zoneKey}"]`
+//     );
+
+//     if (!block) {
+//       return;
+//     }
+
+//     const lang = getLang();
+//     const dot = block.querySelector(".pd-color-active .dot");
+//     const name = block.querySelector(".pd-color-active .name");
+//     const code = block.querySelector(".pd-color-active .code");
+
+//     if (dot) {
+//       if (option.texture) {
+//         dot.style.backgroundImage = `url("${option.texture}")`;
+//         dot.style.backgroundSize = "cover";
+//         dot.style.backgroundColor = "";
+//       } else {
+//         dot.style.backgroundImage = "";
+//         dot.style.backgroundColor = option.hex;
+//       }
+//     }
+
+//     if (name) {
+//       name.textContent = pickLang(option.name, lang);
+//     }
+
+//     if (code) {
+//       code.textContent = option.code;
+//     }
+
+//     block.querySelectorAll(".swatch-btn").forEach(button => {
+//       button.classList.toggle(
+//         "active",
+//         button.dataset.code === option.code
+//       );
+//     });
+//   }
+
+//   function filterZoneOptions(zoneKey, query) {
+//     const zone = config.zones[zoneKey];
+//     const block = document.querySelector(
+//       `[data-zone-block="${zoneKey}"]`
+//     );
+
+//     if (!zone || !block) {
+//       return;
+//     }
+
+//     const lang = getLang();
+//     const normalizedQuery = query.trim().toLowerCase();
+//     let visibleCount = 0;
+
+//     block.querySelectorAll(".swatch-btn").forEach(button => {
+//       const option = zone.options.find(
+//         item => item.code === button.dataset.code
+//       );
+
+//       if (!option) {
+//         button.hidden = true;
+//         return;
+//       }
+
+//       const searchValue = [
+//         option.code,
+//         pickLang(option.name, lang)
+//       ].join(" ").toLowerCase();
+
+//       const matches =
+//         !normalizedQuery ||
+//         searchValue.includes(normalizedQuery);
+
+//       button.hidden = !matches;
+
+//       if (matches) {
+//         visibleCount++;
+//       }
+//     });
+
+//     const emptyMessage = block.querySelector(".color-empty");
+
+//     if (emptyMessage) {
+//       emptyMessage.hidden = visibleCount > 0;
+//     }
+//   }
+
+//   function updateOrderFields() {
+//     const bodyField = document.querySelector(
+//       '.pd-order input[name="bodyColor"]'
+//     );
+
+//     const accentField = document.querySelector(
+//       '.pd-order input[name="accentColor"]'
+//     );
+
+//     if (bodyField && selected.body) {
+//       bodyField.value =
+//         `${pickLang(selected.body.name, "sr")} ` +
+//         `(${selected.body.code})`;
+//     }
+
+//     if (accentField && selected.accent) {
+//       accentField.value =
+//         `${pickLang(selected.accent.name, "sr")} ` +
+//         `(${selected.accent.code})`;
+//     }
+//   }
+
+//   document
+//     .querySelector(".pd-configurator")
+//     ?.addEventListener("click", event => {
+//       const button = event.target.closest(".swatch-btn");
+
+//       if (!button) {
+//         return;
+//       }
+
+//       event.preventDefault();
+
+//       const zoneKey = button.dataset.zone;
+//       const zone = config.zones[zoneKey];
+
+//       if (!zone) {
+//         return;
+//       }
+
+//       const option = zone.options.find(
+//         item => item.code === button.dataset.code
+//       );
+
+//       if (option) {
+//         applyZoneOption(zoneKey, option);
+//       }
+//     });
+// }
+// function initProductPage(){
+//   const root = document.querySelector(".product-detail");
+//   if(!root) return;
+//   const params = new URLSearchParams(location.search);
+//   const id = params.get("id");
+//   const product = PRODUCTS.find(p=>p.id===id) || PRODUCTS[0];
+//   const category = CATEGORIES.find(c=>c.id===product.cat);
+//   const baseShape = shapeKeyFromIcon(product.icon);
+
+//   const palette = (product.colors && product.colors.length) ? product.colors : COLORS;
+//   let selectedColor = palette[0];
+
+//   const orderColorField = document.querySelector(".pd-order input[name='color']");
+
+//   function colorImagePath(color){
+//     // A color can carry its own explicit `image` (real product photo, once available).
+//     // Otherwise we fall back to the generated per-shape/per-color illustration.
+//     return color.image || `images/configurator/colors/${baseShape}-${color.code}.svg`;
+//   }
+
+//   function applyColor(color){
+//     selectedColor = color;
+//     const img = document.querySelector(".pd-media img");
+//     if(img){
+//       img.src = colorImagePath(color);
+//       // if a color-specific image doesn't exist yet, fall back to the base product photo
+//       img.onerror = function(){ this.onerror = null; this.src = product.icon; };
+//     }
+//     const lang = getLang();
+//     const activeDot = document.querySelector(".pd-color-active .dot");
+//     const activeName = document.querySelector(".pd-color-active .name");
+//     const activeCode = document.querySelector(".pd-color-active .code");
+//     if(activeDot) activeDot.style.background = color.hex;
+//     if(activeName) activeName.textContent = pickLang(color.name, lang);
+//     if(activeCode) activeCode.textContent = color.code;
+//     document.querySelectorAll(".swatch-btn").forEach(btn=>{
+//       btn.classList.toggle("active", btn.dataset.code === color.code);
+//     });
+//     if(orderColorField) orderColorField.value = `${pickLang(color.name,"sr")} (${color.code})`;
+//   }
+
+//   function renderSwatches(){
+//   const wrap = document.querySelector("#colorSwatches");
+//   if(!wrap) return;
+
+//   const lang = getLang();
+
+//   wrap.innerHTML = palette.map(c=>`
+//     <button
+//       type="button"
+//       class="swatch-btn ${c.code === selectedColor.code ? "active" : ""}"
+//       data-code="${c.code}"
+//       style="--swatch:${c.hex};"
+//       title="${pickLang(c.name, lang)} — ${c.code}"
+//       aria-label="${pickLang(c.name, lang)}"
+//     >
+//       <span class="swatch-fill"></span>
+//     </button>
+//   `).join("");
+
+//   wrap.querySelectorAll(".swatch-btn").forEach(btn=>{
+//     btn.addEventListener("click", e=>{
+//       e.preventDefault();
+
+//       const color = palette.find(c => c.code === btn.dataset.code);
+
+//       if(color){
+//         applyColor(color);
+//       }
+//     });
+//   });
+// }
+
+//   function filterSwatches(query){
+//     const q = query.trim().toLowerCase();
+//     const emptyMsg = document.querySelector(".color-empty");
+//     let visibleCount = 0;
+//     document.querySelectorAll(".swatch-btn").forEach(btn=>{
+//       const c = palette.find(p=>p.code===btn.dataset.code);
+//       const lang = getLang();
+//       const haystack = (c.code + " " + pickLang(c.name, lang)).toLowerCase();
+//       const match = !q || haystack.includes(q);
+//       btn.style.display = match ? "" : "none";
+//       if(match) visibleCount++;
+//     });
+//     if(emptyMsg) emptyMsg.hidden = visibleCount !== 0;
+//   }
+
+//   function render(){
+//     const lang = getLang();
+//     document.title = pickLang(product.name, lang) + " — Unikat Nameštaj";
+//     document.querySelector(".breadcrumb .current").textContent = pickLang(product.name, lang);
+//     document.querySelector(".breadcrumb .cat-crumb").textContent = pickLang(category.name, lang);
+//     document.querySelector(".breadcrumb .cat-crumb").href = `kategorija.html?kat=${category.id}`;
+//     document.querySelector(".pd-media img").alt = pickLang(product.name, lang);
+//     document.querySelector(".pd-info h1").textContent = pickLang(product.name, lang);
+//     document.querySelector(".pd-desc").textContent = pickLang(product.desc, lang);
+//     document.querySelector(".pd-price").innerHTML = `<small>${(I18N[lang]||I18N.sr).product_price_label}</small>€${product.price}`;
+//     document.querySelector('[data-spec="material"] span').textContent = pickLang(product.material, lang);
+//     document.querySelector('[data-spec="dims"] span').textContent = product.dims;
+//     document.querySelector(".pd-order input[name='product']").value = pickLang(product.name, "sr") + " (" + product.id + ")";
+
+//     renderSwatches();
+//     applyColor(selectedColor);
+//     const searchInput = document.querySelector("#colorSearch");
+//     if(searchInput) filterSwatches(searchInput.value || "");
+
+//     const related = PRODUCTS.filter(p=>p.cat===product.cat && p.id!==product.id).slice(0,3);
+//     const relGrid = document.querySelector(".related .product-grid");
+//     if(relGrid){
+//       relGrid.innerHTML = related.map(p=>`
+//         <a class="product-card reveal" href="proizvod.html?id=${p.id}">
+//           <div class="product-media">
+//             <span class="tag">${pickLang(category.name, lang)}</span>
+//             <img src="${p.icon}" alt="${pickLang(p.name,lang)}">
+//           </div>
+//           <div class="product-body">
+//             <h3>${pickLang(p.name, lang)}</h3>
+//             <div class="material">${pickLang(p.material, lang)}</div>
+//             <div class="product-foot">
+//               <div class="product-price"><small>${(I18N[lang]||I18N.sr).cat_page_from}</small>€${p.price}</div>
+//               <span class="mini-link">${(I18N[lang]||I18N.sr).cat_page_view}</span>
+//             </div>
+//           </div>
+//         </a>
+//       `).join("");
+//     }
+//     initReveal();
+//   }
+
+//   const swatchesWrap = document.querySelector("#colorSwatches");
+//   if(swatchesWrap){
+//     swatchesWrap.addEventListener("click", (e)=>{
+//       const btn = e.target.closest(".swatch-btn");
+//       if(!btn) return;
+//       const color = palette.find(c=>c.code===btn.dataset.code);
+//       if(color) applyColor(color);
+//     });
+//   }
+//   const searchInput = document.querySelector("#colorSearch");
+//   if(searchInput){
+//     searchInput.addEventListener("input", ()=> filterSwatches(searchInput.value));
+//   }
+
+//   render();
+//   document.addEventListener("langchange", render);
+//   initLayeredConfigurator(product);
+// }
 
 /* ---------------- Forms (contact + order) — front-end only ---------------- */
 function initForms(){
