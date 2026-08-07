@@ -51,6 +51,49 @@ const CATEGORIES = [
 ];
 
 /* Each product: id, cat, name/desc per language, price (EUR, "from"), material, dims, icon */
+
+
+
+const CONFIGURATOR_DECORS = [
+  { code: "F186-ST9", label: "F186 ST9", texture: "images/swatches/F186-ST9.png" },
+  { code: "F187-ST9", label: "F187 ST9", texture: "images/swatches/F187-ST9.png" },
+  { code: "F206-ST9", label: "F206 ST9", texture: "images/swatches/F206-ST9.png" },
+  { code: "F800-ST9", label: "F800 ST9", texture: "images/swatches/F800-ST9.png" },
+
+  { code: "H1176-ST37", label: "H1176 ST37", texture: "images/swatches/H1176-ST37.png" },
+  { code: "H1180-ST37", label: "H1180 ST37", texture: "images/swatches/H1180-ST37.png" },
+  { code: "H1181-ST37", label: "H1181 ST37", texture: "images/swatches/H1181-ST37.png" },
+  { code: "H3303-ST10", label: "H3303 ST10", texture: "images/swatches/H3303-ST10.png" },
+  { code: "H3702-ST10", label: "H3702 ST10", texture: "images/swatches/H3702-ST10.png" },
+  { code: "H1242-ST10", label: "H1242 ST10", texture: "images/swatches/H1242-ST10.png" },
+  { code: "H3710-ST12", label: "H3710 ST12", texture: "images/swatches/H3710-ST12.png" },
+  { code: "H3730-ST10", label: "H3730 ST10", texture: "images/swatches/H3730-ST10.png" },
+  { code: "H3734-ST9", label: "H3734 ST9", texture: "images/swatches/H3734-ST9.png" },
+
+  { code: "U525-ST9", label: "U525 ST9", texture: "images/swatches/U525-ST9.png" },
+  { code: "U748-ST9", label: "U748 ST9", texture: "images/swatches/U748-ST9.png" },
+  { code: "U999-ST7", label: "U999 ST7", texture: "images/swatches/U999-ST7.png" },
+  { code: "U961-ST7", label: "U961 ST7", texture: "images/swatches/U961-ST7.png" },
+  { code: "U638-ST9", label: "U638 ST9", texture: "images/swatches/U638-ST9.png" },
+  { code: "U636-ST9", label: "U636 ST9", texture: "images/swatches/U636-ST9.png" },
+  { code: "U113-ST9", label: "U113 ST9", texture: "images/swatches/U113-ST9.png" },
+  { code: "U321-ST9", label: "U321 ST9", texture: "images/swatches/U321-ST9.png" },
+  { code: "U600-ST9", label: "U600 ST9", texture: "images/swatches/U600-ST9.png" },
+  { code: "U702-ST9", label: "U702 ST9", texture: "images/swatches/U702-ST9.png" },
+  { code: "U960-ST9", label: "U960 ST9", texture: "images/swatches/U960-ST9.png" },
+  { code: "U727-ST9", label: "U727 ST9", texture: "images/swatches/U727-ST9.png" }
+].map(decor => ({
+  ...decor,
+
+  name: {
+    sr: decor.label,
+    en: decor.label,
+    de: decor.label
+  }
+}));
+
+
+
 const PRODUCTS = [
   // ORMARI
   /*{ id: "ormar-atelje", cat: "ormari", icon: "images/configurator/ormar.svg", price: 890,
@@ -83,59 +126,65 @@ const PRODUCTS = [
       de: "Ein komplettes Ankleidezimmer, geplant für Ihren Raum und Alltag." } },
 */
   // KUHINJE
-  { id: "kuhinja-masiv", cat: "kuhinje", icon: "kuhinjamodel1.webp", price: 3200,
-    name: { sr: "Kuhinja Masiv", en: "Masiv Kitchen", de: "Küche Masiv" },
-    material: { sr: "Hrastov furnir, kamena radna ploča", en: "Oak veneer, stone worktop", de: "Eichenfurnier, Steinarbeitsplatte" },
-    dims: "po prostoriji / per room",
-    desc: { sr: "Prava linija elemenata, masivna radna ploča i integrisani bela tehnika.",
-      en: "A straight run of units, a solid worktop and fully integrated appliances.",
-      de: "Gerade Küchenzeile, massive Arbeitsplatte und integrierte Geräte." }, 
-    
-    colors: [
 {
-    code: "KR-01",
-    hex: "#ece2cd",
-    name: {
-        sr: "Krem bela",
-        en: "Cream white",
-        de: "Cremeweiß"
-    },
-    image: "kuhinjamodel1.webp"
-},
+  id: "kuhinja-masiv",
+  cat: "kuhinje",
+  icon: "kuhinjamodel1.webp",
+  price: 3200,
 
-{
-    code: "NV-02",
-    hex: "#1b2a4a",
-    name: {
-        sr: "Mornarsko plava",
-        en: "Navy blue",
-        de: "Marineblau"
-    },
-    image: "kuhinjamodel2.png"
-},
+  name: {
+    sr: "Kuhinja Masiv",
+    en: "Masiv Kitchen",
+    de: "Küche Masiv"
+  },
 
-{
-    code: "ZM-03",
-    hex: "#4b5320",
-    name: {
-        sr: "Maslinasta",
-        en: "Olive",
-        de: "Oliv"
-    },
-    image: "kuhinjamodel3.png"
-},
+  material: {
+    sr: "Pločasti materijal i radna ploča po izboru",
+    en: "Board material and worktop of your choice",
+    de: "Plattenmaterial und Arbeitsplatte nach Wahl"
+  },
 
-{
-    code: "OR-04",
-    hex: "#5b3a24",
-    name: {
-        sr: "Orah",
-        en: "Walnut",
-        de: "Walnuss"
-    },
-    image: "kuhinjamodel4.png"
-}
-]},
+  dims: "po prostoriji / per room",
+
+  desc: {
+    sr: "Kuhinja izrađena po meri sa dva nezavisna izbora dekora.",
+    en: "A custom kitchen with two independent decor selections.",
+    de: "Maßküche mit zwei unabhängig wählbaren Dekoren."
+  },
+
+  configurator: {
+    imageFolder: "kitchen/",
+    imageExtension: "png",
+
+    zones: {
+
+      body: {
+        label: {
+          sr: "Prvi dekor",
+          en: "First decor",
+          de: "Erstes Dekor"
+        },
+
+        default: "F186-ST9",
+
+        options: CONFIGURATOR_DECORS
+      },
+
+      accent: {
+        label: {
+          sr: "Drugi dekor",
+          en: "Second decor",
+          de: "Zweites Dekor"
+        },
+
+        default: "H1176-ST37",
+
+        options: CONFIGURATOR_DECORS
+      }
+
+    }
+  }
+},,
   /*{ id: "kuhinja-otvorena", cat: "kuhinje", icon: "ig2.png", price: 4600,
     name: { sr: "Kuhinja Ostrvo", en: "Island Kitchen", de: "Küche mit Insel" },
     material: { sr: "Lakirano MDF, mesingani detalji", en: "Lacquered MDF, brass details", de: "Lackiertes MDF, Messingdetails" },
