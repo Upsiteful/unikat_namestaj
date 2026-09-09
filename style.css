@@ -194,8 +194,9 @@ section{padding:96px 0;}
 /* ==================== HERO ==================== */
 .hero{
   position:relative;overflow:hidden;
-  background:radial-gradient(120% 140% at 15% 0%, #3a2818 0%, var(--walnut-950) 62%);
-  color:var(--linen-50);padding:120px 0 90px;
+  /*background:radial-gradient(120% 140% at 15% 0%, #3a2818 0%, var(--walnut-950) 62%);
+  color:var(--linen-50);padding:120px 0 90px;*/
+  background-color: #291808;
 }
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
 .hero-eyebrow{color:var(--brass-300);}
@@ -756,43 +757,189 @@ img, svg, iframe{ max-width:100%; }
 
 
 
-/* --- color picker --- */
-.pd-colors{background:var(--linen-100);border:1px solid var(--line);border-radius:var(--radius-m);padding:22px 22px 24px;margin-bottom:26px;}
-.pd-colors-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
-.pd-colors-head b{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);}
-.pd-color-active{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:var(--walnut-950);}
-.pd-color-active .dot{width:16px;height:16px;border-radius:50%;border:1px solid var(--line);flex:none;}
-.pd-color-active .code{color:var(--ink-soft);font-weight:600;font-size:.78rem;}
+/* --- color picker / elegant decor cards --- */
+.pd-colors{
+  background:linear-gradient(180deg, rgba(243,237,226,.72), rgba(250,247,240,.96));
+  border:1px solid rgba(36,26,18,.10);
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 12px 34px -30px rgba(25,20,16,.45);
+}
+.pd-colors-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+.pd-colors-head b{
+  font-size:.74rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--ink-soft);
+}
+.pd-color-active{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(36,26,18,.08);
+  font-size:.8rem;
+  font-weight:700;
+  color:var(--walnut-950);
+}
+.pd-color-active .dot{
+  width:18px;
+  height:18px;
+  border-radius:6px;
+  border:1px solid rgba(36,26,18,.14);
+  flex:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.32);
+}
+.pd-color-active .name{display:none;}
+.pd-color-active .code{
+  color:var(--walnut-900);
+  font-weight:800;
+  font-size:.76rem;
+  letter-spacing:.02em;
+}
 .color-search{
-  position:relative;margin-bottom:16px;
+  position:relative;
+  margin-bottom:16px;
 }
-.color-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-soft);pointer-events:none;}
+.color-search::before{
+  content:"⌕";
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-52%);
+  color:var(--ink-soft);
+  font-size:1.05rem;
+  pointer-events:none;
+  opacity:.65;
+}
+.color-search svg{display:none;}
 .color-search input{
-  width:100%;padding:11px 14px 11px 40px;border-radius:999px;border:1px solid var(--line);
-  background:var(--linen-50);font-size:.86rem;color:var(--ink);transition:border-color .2s;
+  width:100%;
+  padding:11px 14px 11px 38px;
+  border-radius:12px;
+  border:1px solid rgba(36,26,18,.10);
+  background:rgba(255,255,255,.72);
+  font-size:.84rem;
+  color:var(--ink);
+  outline:none;
+  transition:border-color .2s, box-shadow .2s, background .2s;
 }
-.color-search input:focus{border-color:var(--brass-500);}
-.color-swatches{display:flex;gap:12px;flex-wrap:wrap;}
+.color-search input::placeholder{color:rgba(91,77,63,.62);}
+.color-search input:focus{
+  border-color:rgba(176,141,87,.75);
+  box-shadow:0 0 0 3px rgba(176,141,87,.10);
+  background:#fff;
+}
+.color-swatches{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(72px, 1fr));
+  gap:10px;
+}
 .swatch-btn{
-  --swatch:#ccc;
-  position:relative;width:46px;height:46px;border-radius:50%;padding:0;background:none;
-  border:2px solid transparent;transition:border-color .2s,transform .2s;
+  position:relative;
+  width:100%;
+  height:auto;
+  min-width:0;
+  padding:6px 6px 8px;
+  border-radius:13px;
+  border:1px solid rgba(36,26,18,.09);
+  background:rgba(255,255,255,.62);
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  align-items:stretch;
+  transition:transform .18s var(--ease), border-color .18s, box-shadow .18s, background .18s;
 }
-.swatch-btn:hover{transform:translateY(-2px);}
+.swatch-btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(176,141,87,.55);
+  background:#fff;
+  box-shadow:0 10px 24px -18px rgba(25,20,16,.45);
+}
 .swatch-btn .swatch-fill{
-  position:absolute;inset:3px;border-radius:50%;background:var(--swatch);
-  box-shadow:inset 0 0 0 1px rgba(36,26,18,.18);
+  position:relative;
+  inset:auto;
+  width:100%;
+  aspect-ratio:1.35/1;
+  border-radius:9px;
+  background:var(--swatch);
+  box-shadow:inset 0 0 0 1px rgba(36,26,18,.12);
+  overflow:hidden;
 }
-.swatch-btn.active{border-color:var(--walnut-950);}
+.swatch-meta{
+  display:flex;
+  justify-content:center;
+  min-width:0;
+}
+.swatch-code{
+  display:block;
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:.68rem;
+  line-height:1.1;
+  font-weight:800;
+  letter-spacing:.015em;
+  color:var(--ink-soft);
+}
+.swatch-btn.active{
+  border-color:var(--brass-500);
+  background:#fff;
+  box-shadow:0 0 0 2px rgba(176,141,87,.13), 0 10px 24px -20px rgba(25,20,16,.48);
+}
 .swatch-btn.active::after{
-  content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--brass-500);
+  content:"✓";
+  position:absolute;
+  top:10px;
+  right:10px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--walnut-950);
+  color:var(--linen-50);
+  border:2px solid rgba(250,247,240,.92);
+  font-size:.65rem;
+  font-weight:800;
+  line-height:1;
+  z-index:2;
+  box-shadow:0 4px 10px rgba(25,20,16,.18);
 }
-.swatch-btn.active .swatch-fill::after{
-  content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:.9rem;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.5);
+.swatch-btn.active .swatch-fill::after{content:none;}
+.swatch-btn.active .swatch-code{color:var(--walnut-950);}
+.swatch-btn[hidden]{display:none !important;}
+.color-empty{
+  font-size:.82rem;
+  color:var(--ink-soft);
+  margin-top:8px;
+  text-align:center;
+  padding:10px 0 2px;
 }
-.color-empty{font-size:.84rem;color:var(--ink-soft);margin-top:4px;}
- 
+
+@media (max-width:560px){
+  .pd-colors{padding:16px;border-radius:16px;}
+  .color-swatches{grid-template-columns:repeat(4, minmax(0,1fr));gap:8px;}
+  .swatch-btn{padding:5px 5px 7px;border-radius:11px;gap:6px;}
+  .swatch-btn .swatch-fill{border-radius:7px;}
+  .swatch-code{font-size:.61rem;}
+  .pd-color-active{padding:6px 9px;}
+}
+
 .pd-desc{color:var(--ink-soft);margin-bottom:26px;}
 .pd-specs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:30px;}
 .pd-spec{background:var(--linen-100);border-radius:12px;padding:16px 18px;}
@@ -948,54 +1095,414 @@ body.lightbox-lock{overflow:hidden;}
   }
 }
 
+/* ==========================================================================
+   PRODUCT CONFIGURATOR — dve nezavisne zone, jedna gotova kombinaciona slika
+   ========================================================================== */
 
-
-
-
-
-
-
-.product-visual {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
+.combination-preview{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center;
 }
 
-.product-visual::before {
-  content: "";
-  display: block;
-  padding-top: 125%;
+/* Spoljašnji .pd-colors u HTML-u služi samo kao omotač.
+   Stvarne kartice su dva unutrašnja [data-zone-block] elementa. */
+.pd-configurator{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
 }
 
-/* Svi slojevi zauzimaju potpuno isto mesto */
-.product-layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: center;
-  pointer-events: none;
+.pd-configurator > .pd-colors{
+  margin-bottom:0;
 }
 
-/* Base je najniži sloj */
-.product-layer-base {
-  z-index: 1;
+/* Ako uzorak dekora još nije dodat, ostaje neutralna pozadina umesto polomljene ikonice. */
+.swatch-btn .swatch-fill{
+  background-color:#d9d3ca;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 
-/* Prvi deo nameštaja */
-.product-layer-body {
-  z-index: 2;
+@media (max-width:760px){
+  .pd-configurator{
+    gap:14px;
+  }
+}
+/* ========================================================================== 
+   KITCHEN CONFIGURATOR — focused entry point + mobile touch reliability
+   ========================================================================== */
+.nav-configurator-link{
+  color:var(--walnut-950) !important;
+  background:rgba(176,141,87,.14);
+  border:1px solid rgba(176,141,87,.28);
+}
+.nav-configurator-link:hover{background:rgba(176,141,87,.24) !important;}
+
+.kitchen-configurator-promo{
+  background:var(--walnut-950);
+  color:var(--linen-50);
+}
+.kitchen-configurator-promo .eyebrow{color:var(--brass-300);}
+.kitchen-configurator-promo .eyebrow::before{background:var(--brass-300);}
+.kitchen-configurator-promo .section-title{color:var(--linen-50);}
+.kitchen-configurator-promo .section-text{color:rgba(250,247,240,.76);max-width:720px;}
+.kc-promo-card{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(280px,.75fr);
+  gap:44px;
+  padding:46px;
+  border:1px solid rgba(250,247,240,.13);
+  border-radius:var(--radius-l);
+  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(176,141,87,.08));
+  box-shadow:0 24px 70px -45px rgba(0,0,0,.8);
+}
+.kc-promo-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+.kc-disclaimer{
+  margin-top:22px;
+  max-width:760px;
+  padding-left:14px;
+  border-left:2px solid var(--brass-500);
+  color:rgba(250,247,240,.58);
+  font-size:.82rem;
+}
+.kc-promo-side{
+  align-self:stretch;
+  padding:24px;
+  border-radius:18px;
+  background:rgba(250,247,240,.065);
+  border:1px solid rgba(250,247,240,.1);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.kc-primary-badge{
+  align-self:flex-start;
+  padding:7px 11px;
+  border-radius:999px;
+  background:var(--brass-500);
+  color:var(--walnut-950);
+  font-size:.72rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.kc-side-item{display:flex;flex-direction:column;gap:8px;}
+.kc-side-item strong{font-family:var(--font-display);font-size:1.2rem;font-weight:500;}
+.kc-side-item span{font-size:.87rem;color:rgba(250,247,240,.68);}
+.kc-mini-list{display:grid;gap:8px;margin-top:auto;}
+.kc-mini-list span{
+  position:relative;
+  padding:10px 12px 10px 34px;
+  border-radius:10px;
+  background:rgba(250,247,240,.06);
+  font-size:.82rem;
+  font-weight:650;
+}
+.kc-mini-list span::before{
+  content:"✓";
+  position:absolute;
+  left:12px;
+  color:var(--brass-300);
+  font-weight:800;
 }
 
-/* Drugi deo nameštaja */
-.product-layer-accent {
-  z-index: 3;
+.configurator-tag{
+  position:absolute;
+  right:14px;
+  top:14px;
+  z-index:3;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--brass-500);
+  color:var(--walnut-950);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.02em;
 }
-.product-visual {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
+
+.pd-configurator-shell{
+  padding:0;
+  overflow:hidden;
+  background:transparent;
+  border:0;
+}
+.pd-configurator-intro{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(220px,1.1fr);
+  gap:20px;
+  align-items:end;
+  padding:22px 22px 18px;
+  margin-bottom:14px;
+  border-radius:var(--radius-m);
+  background:var(--walnut-950);
+  color:var(--linen-50);
+}
+.pd-configurator-kicker{
+  display:block;
+  margin-bottom:5px;
+  color:var(--brass-300);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+.pd-configurator-intro h2{font-size:1.55rem;color:var(--linen-50);}
+.pd-configurator-intro p{color:rgba(250,247,240,.7);font-size:.86rem;}
+.configurator-disclaimer{
+  margin-top:14px;
+  padding:14px 16px;
+  border-radius:12px;
+  background:var(--linen-100);
+  border:1px solid var(--line);
+  color:var(--ink-soft);
+  font-size:.79rem;
+  line-height:1.55;
+}
+
+/* Keep swatches above local decorative layers and enlarge the real hit area. */
+.swatch-btn{
+  z-index:2;
+  min-width:46px;
+  min-height:46px;
+}
+
+@media (max-width:900px){
+  .kc-promo-card{grid-template-columns:1fr;padding:34px;gap:28px;}
+  .pd-configurator-intro{grid-template-columns:1fr;align-items:start;}
+}
+
+@media (max-width:760px){
+  .kc-promo-card{padding:26px 20px;border-radius:18px;}
+  .kc-promo-actions{flex-direction:column;align-items:stretch;}
+  .kc-promo-actions .btn{width:100%;}
+  .kc-promo-side{padding:18px;}
+
+  .pd-configurator-intro{padding:20px 18px;}
+  .pd-configurator > .pd-colors{padding:20px 16px 22px;}
+  .color-swatches{gap:12px;}
+  .swatch-btn{
+    width:54px;
+    height:54px;
+    flex:0 0 54px;
+    min-width:54px;
+    min-height:54px;
+    touch-action:manipulation;
+  }
+
+  /* The fixed contact control could overlap lower swatches on phones. */
+  body.product-configurator-page .floating-widget{display:none;}
+}
+
+
+
+/* =========================================================
+   POLITIKA PRIVATNOSTI
+   Nalepiti na kraj postojećeg style.css
+   ========================================================= */
+
+.privacy-hero{
+  padding:72px 0 46px;
+  background:linear-gradient(180deg,var(--linen-100),var(--linen-50));
+  border-bottom:1px solid var(--line);
+}
+
+.privacy-hero .breadcrumb{
+  margin-bottom:22px;
+}
+
+.privacy-hero h1{
+  font-size:clamp(2.3rem,5vw,4.1rem);
+  line-height:1.05;
+  max-width:760px;
+}
+
+.privacy-hero p{
+  margin-top:18px;
+  max-width:760px;
+  color:var(--ink-soft);
+  font-size:1.05rem;
+  line-height:1.75;
+}
+
+
+/* ===== GLAVNI SADRŽAJ ===== */
+
+.privacy-page{
+  padding:72px 0 96px;
+}
+
+.privacy-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 300px;
+  gap:54px;
+  align-items:start;
+}
+
+.privacy-content{
+  max-width:820px;
+}
+
+
+/* ===== KARTICE SA TEKSTOM ===== */
+
+.privacy-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius-l);
+  padding:34px;
+  box-shadow:var(--shadow-tight);
+}
+
+.privacy-card + .privacy-card{
+  margin-top:20px;
+}
+
+.privacy-card h2{
+  font-size:1.55rem;
+  margin-bottom:14px;
+}
+
+.privacy-card h3{
+  font-size:1.08rem;
+  margin:24px 0 8px;
+}
+
+.privacy-card p{
+  color:var(--ink-soft);
+  line-height:1.8;
+}
+
+.privacy-card p + p{
+  margin-top:12px;
+}
+
+.privacy-card ul{
+  list-style:disc;
+  padding-left:20px;
+  margin-top:12px;
+  color:var(--ink-soft);
+}
+
+.privacy-card li{
+  margin:8px 0;
+  line-height:1.7;
+}
+
+.privacy-card a{
+  color:var(--walnut-900);
+  text-decoration:underline;
+  text-decoration-color:var(--brass-500);
+  text-underline-offset:3px;
+}
+
+
+/* ===== INFORMATIVNA NAPOMENA ===== */
+
+.privacy-note{
+  padding:18px 20px;
+  border-left:3px solid var(--brass-500);
+  background:var(--linen-100);
+  border-radius:0 var(--radius-s) var(--radius-s) 0;
+  color:var(--ink-soft);
+  line-height:1.7;
+  margin-top:18px;
+}
+
+
+/* ===== DESNI KONTAKT BLOK ===== */
+
+.privacy-aside{
+  position:sticky;
+  top:108px;
+}
+
+.privacy-aside-card{
+  background:var(--walnut-950);
+  color:var(--linen-50);
+  border-radius:var(--radius-l);
+  padding:26px;
+  box-shadow:var(--shadow-soft);
+}
+
+.privacy-aside-card .eyebrow{
+  color:var(--brass-300);
+}
+
+.privacy-aside-card .eyebrow::before{
+  background:var(--brass-300);
+}
+
+.privacy-aside-card h3{
+  font-size:1.45rem;
+  margin-bottom:12px;
+}
+
+.privacy-aside-card p{
+  color:rgba(250,247,240,.72);
+  font-size:.92rem;
+  line-height:1.7;
+}
+
+.privacy-aside-card .privacy-contact{
+  margin-top:18px;
+  display:grid;
+  gap:10px;
+}
+
+.privacy-aside-card .privacy-contact a,
+.privacy-aside-card .privacy-contact span{
+  display:block;
+  font-size:.9rem;
+  color:var(--linen-100);
+}
+
+
+/* ===== DATUM AŽURIRANJA ===== */
+
+.privacy-updated{
+  display:inline-flex;
+  margin-top:18px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(176,141,87,.14);
+  color:var(--brass-300);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+
+
+/* ===== TABLET / MOBILE ===== */
+
+@media (max-width:900px){
+
+  .privacy-layout{
+    grid-template-columns:1fr;
+  }
+
+  .privacy-aside{
+    position:static;
+  }
+}
+
+@media (max-width:600px){
+
+  .privacy-hero{
+    padding:54px 0 34px;
+  }
+
+  .privacy-page{
+    padding:48px 0 72px;
+  }
+
+  .privacy-card{
+    padding:24px;
+    border-radius:18px;
+  }
 }
