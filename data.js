@@ -165,7 +165,7 @@ const PRODUCTS = [
           de: "Erstes Dekor"
         },
 
-        default: "F186-ST9",
+        default: "F206-ST9",
 
         options: CONFIGURATOR_DECORS
       },
@@ -177,7 +177,7 @@ const PRODUCTS = [
           de: "Zweites Dekor"
         },
 
-        default: "H1176-ST37",
+        default: "H1180-ST37",
 
         options: CONFIGURATOR_DECORS
       }
