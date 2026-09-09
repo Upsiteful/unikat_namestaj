@@ -223,7 +223,10 @@ section{padding:96px 0;}
 .hero-art .float-card span{font-size:.76rem;color:var(--ink-soft);}
 @media (max-width:900px){
   .hero .wrap{grid-template-columns:1fr;}
-  .hero-art{order:-1;}
+  .hero-art{order:-1;
+  
+  display: none;
+}
   .hero-art .float-card{left:14px;bottom:-20px;}
 }
 
@@ -1504,5 +1507,46 @@ body.lightbox-lock{overflow:hidden;}
   .privacy-card{
     padding:24px;
     border-radius:18px;
+  }
+}
+
+
+
+/* ===== MOBILE CONFIGURATOR TAP FIX ===== */
+
+.floating-widget{
+  pointer-events:none;
+}
+
+.floating-widget .fw-toggle,
+.floating-widget .fw-panel,
+.floating-widget .fw-panel *{
+  pointer-events:auto;
+}
+
+@media (max-width:760px){
+
+  body.product-configurator-page .floating-widget{
+    display:none !important;
+  }
+
+  .pd-configurator,
+  .color-swatches,
+  .swatch-btn{
+    position:relative;
+  }
+
+  .swatch-btn{
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+    cursor:pointer;
+  }
+
+  .swatch-btn .swatch-fill,
+  .swatch-btn .swatch-meta,
+  .swatch-btn .swatch-code,
+  .swatch-btn::before,
+  .swatch-btn::after{
+    pointer-events:none;
   }
 }
