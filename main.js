@@ -1203,22 +1203,7 @@ function initProductPage(){
       );
 
 
-    if(price){
-
-      price.innerHTML =
-
-        `<small>
-          ${
-            (
-              I18N[lang]
-              ||
-              I18N.sr
-            ).product_price_label
-          }
-        </small>
-        €${product.price}`;
-
-    }
+    
 
 
 
