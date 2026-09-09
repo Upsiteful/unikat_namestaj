@@ -376,7 +376,7 @@ function initCombinationConfigurator(product){
   if(!config || !config.zones){
     return;
   }
-
+document.body.classList.add("product-configurator-page");
   const preview =
     document.querySelector("#combinationPreview");
 
