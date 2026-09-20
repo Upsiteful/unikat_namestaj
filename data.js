@@ -95,36 +95,7 @@ const CONFIGURATOR_DECORS = [
 
 
 const PRODUCTS = [
-  // ORMARI
-  /*{ id: "ormar-atelje", cat: "ormari", icon: "images/configurator/ormar.svg", price: 890,
-    name: { sr: "Ormar Atelje", en: "Atelje Wardrobe", de: "Kleiderschrank Atelje" },
-    material: { sr: "Hrast, mesing okov", en: "Oak, brass hardware", de: "Eiche, Messingbeschläge" },
-    dims: "240 × 60 × 250 cm",
-    desc: { sr: "Klizni ormar sa unutrašnjošću podeljenom po vašem spisku garderobe.",
-      en: "Sliding wardrobe with an interior laid out around your actual wardrobe list.",
-      de: "Schiebeschrank mit einem Innenleben, das auf Ihre Garderobe abgestimmt ist." } },
-  { id: "ormar-linea", cat: "ormari", icon: "images/configurator/ormar.svg", price: 760,
-    name: { sr: "Ormar Linea", en: "Linea Wardrobe", de: "Kleiderschrank Linea" },
-    material: { sr: "Furnir oraha", en: "Walnut veneer", de: "Nussbaum-Furnier" },
-    dims: "200 × 58 × 240 cm",
-    desc: { sr: "Krilna vrata bez ručki, diskretan profil za manje spavaće sobe.",
-      en: "Push-to-open hinged doors, a discreet profile for smaller bedrooms.",
-      de: "Push-to-open Flügeltüren, dezentes Profil für kleinere Schlafzimmer." } },
-  { id: "ormar-nocturn", cat: "ormari", icon: "images/configurator/ormar.svg", price: 1150,
-    name: { sr: "Ormar Nocturn", en: "Nocturn Wardrobe", de: "Kleiderschrank Nocturn" },
-    material: { sr: "Mat lakirano drvo, unutra jasen", en: "Matte lacquered wood, ash interior", de: "Matt lackiertes Holz, Innenraum Esche" },
-    dims: "300 × 62 × 260 cm",
-    desc: { sr: "Ugaoni ormar od poda do plafona sa LED osvetljenjem unutra.",
-      en: "Floor-to-ceiling corner wardrobe with interior LED lighting.",
-      de: "Eck-Kleiderschrank vom Boden bis zur Decke mit Innenbeleuchtung." } },
-  { id: "garderober-studio", cat: "ormari", icon: "images/configurator/ormar.svg", price: 1980,
-    name: { sr: "Garderober Studio", en: "Studio Walk-in Closet", de: "Ankleide Studio" },
-    material: { sr: "Hrast i mesing", en: "Oak and brass", de: "Eiche und Messing" },
-    dims: "po prostoriji / per room",
-    desc: { sr: "Kompletna garderobna soba projektovana za vaš prostor i naviku oblačenja.",
-      en: "A complete walk-in closet designed around your room and daily routine.",
-      de: "Ein komplettes Ankleidezimmer, geplant für Ihren Raum und Alltag." } },
-*/
+
   // KUHINJE
 {
   id: "kuhinja-masiv",
@@ -185,38 +156,7 @@ const PRODUCTS = [
     }
   }
 },,
-  /*{ id: "kuhinja-otvorena", cat: "kuhinje", icon: "ig2.png", price: 4600,
-    name: { sr: "Kuhinja Ostrvo", en: "Island Kitchen", de: "Küche mit Insel" },
-    material: { sr: "Lakirano MDF, mesingani detalji", en: "Lacquered MDF, brass details", de: "Lackiertes MDF, Messingdetails" },
-    dims: "po prostoriji / per room",
-    desc: { sr: "Kuhinja sa centralnim ostrvom za druženje i pripremu hrane.",
-      en: "A kitchen with a central island built for cooking and gathering.",
-      de: "Küche mit zentraler Insel zum Kochen und Zusammensein." } },
-  { id: "kuhinja-mala", cat: "kuhinje", icon: "ig3.png", price: 2100,
-    name: { sr: "Kuhinja Kompakt", en: "Compact Kitchen", de: "Küche Kompakt" },
-    material: { sr: "Furnir jasena", en: "Ash veneer", de: "Eschenfurnier" },
-    dims: "do 8 m² / up to 8 m²",
-    desc: { sr: "Rešenje za manje kuhinje bez kompromisa u materijalu i okovu.",
-      en: "A solution for smaller kitchens with no compromise on material or hardware.",
-      de: "Lösung für kleinere Küchen ohne Kompromisse bei Material und Beschlägen." } },*/
-
  
-
-  // DNEVNE SOBE
-  /*{ id: "sofa-como", cat: "dnevne-sobe", icon: "images/configurator/sofa.svg", price: 1450,
-    name: { sr: "Sofa Como", en: "Como Sofa", de: "Sofa Como" },
-    material: { sr: "Šenil tkanina, drvene noge", en: "Chenille fabric, wooden legs", de: "Chenille-Stoff, Holzfüße" },
-    dims: "240 × 95 × 80 cm",
-    desc: { sr: "Trosed dubokog sedenja, presvlaka po katalogu tkanina.",
-      en: "A deep-seat three-seater, upholstery chosen from our fabric catalogue.",
-      de: "Dreisitzer mit tiefer Sitzfläche, Bezug aus unserem Stoffkatalog." } },
-  { id: "sofa-ugaona", cat: "dnevne-sobe", icon: "images/configurator/sofa.svg", price: 2100,
-    name: { sr: "Ugaona sofa Modul", en: "Modul Corner Sofa", de: "Ecksofa Modul" },
-    material: { sr: "Baršun, mesingane noge", en: "Velvet, brass legs", de: "Samt, Messingfüße" },
-    dims: "300 × 210 cm",
-    desc: { sr: "Modularna sofa koju možete prilagoditi obliku prostorije.",
-      en: "A modular sofa you can rearrange to fit the shape of the room.",
-      de: "Modulares Sofa, anpassbar an die Raumform." } },*/
   { id: "tv-komoda-fer", cat: "dnevne-sobe", icon: "tvkomodamodel1.png", price: 640,
     name: { sr: "TV komoda Fer", en: "Fer TV Unit", de: "TV-Möbel Fer" },
     material: { sr: "Furnir oraha, crni čelik", en: "Walnut veneer, black steel", de: "Nussbaumfurnier, schwarzer Stahl" },
@@ -534,12 +474,12 @@ const I18N = {
     about_title: "Iz porodične stolarske radionice do studija za enterijer",
     about_text1: "Unikat Nameštaj je porodična radionica koja od 2013. godine izrađuje nameštaj po meri za domove i poslovne prostore širom Srbije. Ne prodajemo gotova rešenja iz kataloga — svaki projekat počinje merenjem vašeg prostora i razgovorom o tome kako ga koristite.",
     about_text2: "Radimo sa masivnim drvetom, furnirima i mesinganim okovom, a proces pratimo od skice, preko 3D prikaza, do montaže na licu mesta.",
-    about_point1_title: "Besplatna izmera",
-    about_point1_text: "Naš stolar dolazi kod vas, meri prostor i predlaže rešenje.",
-    about_point2_title: "3D projekat pre izrade",
-    about_point2_text: "Vidite tačan izgled komada pre nego što krene proizvodnja.",
+    about_point1_title: "Izmera i konsultacija kod Vas",
+    about_point1_text: "Naš majstor dolazi kod vas, meri prostor i predlaže rešenje.",
+    about_point2_title: "Konsultacije i izbor materijala",
+    about_point2_text: "Vidite tačan izgled komada pre nego što krene proizvodnja u sekciji konfigurator.",
     about_point3_title: "Sopstvena radionica",
-    about_point3_text: "Sve secemo i sklapamo interno — bez posrednika i podizvođača.",
+    about_point3_text: "Sav nameštaj izrađujemo direktno i  personalizovan je za Vaš prostor  — bez posrednika i podizvođača.",
     about_point4_title: "Garancija 5 godina",
     about_point4_text: "Stojimo iza konstrukcije, okova i lakiranja svakog komada.",
 
@@ -573,11 +513,11 @@ const I18N = {
 
     faq_eyebrow: "Pitanja",
     faq_title: "Često postavljana pitanja",
-    faq_q1: "Koliko traje izrada nameštaja po meri?",
+    faq_q1: "Koliko je vremenska dužina izrade i montaže nameštaja?",
     faq_a1: "U proseku od 3 do 6 nedelja od potvrde projekta, u zavisnosti od obima porudžbine i izabranih materijala.",
-    faq_q2: "Da li dolazite na besplatnu izmeru?",
+    faq_q2: "Da li dolazite na uslužno merenje i koja je cena ove usluge?",
     faq_a2: "Da, izmera i prva konsultacija su besplatne za teritoriju Beograda i okoline. Za ostale gradove, javite se za dogovor.",
-    faq_q3: "Koje materijale koristite?",
+    faq_q3: "Koje materijale i okove pretežno koristite?",
     faq_a3: "Masivno drvo (hrast, jasen, orah), furnire, MDF u boji, kao i mesingani i čelični okov, u zavisnosti od projekta.",
     faq_q4: "Da li mogu da promenim dimenzije prikazanih proizvoda?",
     faq_a4: "Da — svi komadi u ponudi su polazna tačka. Konačne dimenzije uvek prilagođavamo vašem prostoru.",
