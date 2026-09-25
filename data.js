@@ -104,9 +104,9 @@ const PRODUCTS = [
   price: 3200,
 
   name: {
-    sr: "Kuhinja Masiv",
-    en: "Masiv Kitchen",
-    de: "Küche Masiv"
+    sr: "Konfigurator",
+    en: "Configurator",
+    de: "Konfigurator"
   },
 
   material: {
@@ -463,25 +463,24 @@ const I18N = {
     hero_text: "Svaki komad projektujemo, secemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.",
     hero_cta_primary: "Istražite kategorije",
     hero_cta_secondary: "Zakažite besplatnu izmeru",
-    hero_stat1_num: "12",
-    hero_stat1_label: "godina rada",
-    hero_stat2_num: "640+",
-    hero_stat2_label: "izrađenih komada",
-    hero_stat3_num: "100%",
-    hero_stat3_label: "po meri, bez serija",
+    hero_stat1_num: "10",
+    hero_stat1_label: "godina iskustva",
+    hero_stat2_num: "400+",
+    hero_stat2_label: "zadovoljnih klijenata",
+    
 
     about_eyebrow: "O nama",
     about_title: "Iz porodične stolarske radionice do studija za enterijer",
     about_text1: "Unikat Nameštaj je porodična radionica koja od 2013. godine izrađuje nameštaj po meri za domove i poslovne prostore širom Srbije. Ne prodajemo gotova rešenja iz kataloga — svaki projekat počinje merenjem vašeg prostora i razgovorom o tome kako ga koristite.",
     about_text2: "Radimo sa masivnim drvetom, furnirima i mesinganim okovom, a proces pratimo od skice, preko 3D prikaza, do montaže na licu mesta.",
-    about_point1_title: "Izmera i konsultacija kod Vas",
-    about_point1_text: "Naš majstor dolazi kod vas, meri prostor i predlaže rešenje.",
-    about_point2_title: "Konsultacije i izbor materijala",
-    about_point2_text: "Vidite tačan izgled komada pre nego što krene proizvodnja u sekciji konfigurator.",
-    about_point3_title: "Sopstvena radionica",
-    about_point3_text: "Sav nameštaj izrađujemo direktno i  personalizovan je za Vaš prostor  — bez posrednika i podizvođača.",
-    about_point4_title: "Garancija 5 godina",
-    about_point4_text: "Stojimo iza konstrukcije, okova i lakiranja svakog komada.",
+    about_point1_title: "Početna ideja",
+    about_point1_text: "Sve počinje od Vaših želja i ideja — mi ih pretvaramo u funkcionalan i lep nameštaj.",
+    about_point2_title: "Izlazak na merenje i konsultacija kod Vas",
+    about_point2_text: "Naš majstor dolazi kod vas, meri prostor i predlaže rešenje.",
+    about_point3_title: "Konsultacije i izbor materijala",
+    about_point3_text: "Vidite tačan izgled komada pre nego što krene proizvodnja u sekciji konfigurator.",
+    about_point4_title: "Sopstvena radionica",
+    about_point4_text: "Sav nameštaj izrađujemo direktno i  personalizovan je za Vaš prostor  — bez posrednika i podizvođača.",
 
     cat_eyebrow: "Ponuda",
     cat_title: "Kategorije nameštaja",
