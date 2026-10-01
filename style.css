@@ -1550,3 +1550,534 @@ body.lightbox-lock{overflow:hidden;}
     pointer-events:none;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   CONTACT — KITCHEN CONFIGURATOR SHORTCUT
+   ========================================= */
+
+.contact-config-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 36px;
+  border-radius: var(--radius-l);
+
+  background: var(--walnut-950);
+  color: var(--linen-50);
+
+  border: 1px solid rgba(176, 141, 87, .3);
+  box-shadow: var(--shadow-tight);
+}
+
+/* Suptilno dekorativno osvetljenje */
+
+.contact-config-card::before {
+  content: "";
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  top: -140px;
+  right: -120px;
+
+  background: radial-gradient(
+    circle,
+    rgba(176, 141, 87, .17),
+    transparent 70%
+  );
+
+  pointer-events: none;
+}
+
+.contact-config-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
+
+.contact-config-label {
+  font-family: var(--font-body);
+  font-size: .7rem;
+  font-weight: 800;
+
+  letter-spacing: .16em;
+  color: var(--brass-300);
+}
+
+.contact-config-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border: 1px solid rgba(205, 160, 93, .4);
+  border-radius: 50%;
+
+  color: var(--brass-300);
+  font-size: 1.35rem;
+}
+
+/* Naslov i opis */
+
+.contact-config-card h3 {
+  max-width: 360px;
+
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.5vw, 2rem);
+  line-height: 1.2;
+
+  color: var(--linen-50);
+  margin-bottom: 18px;
+}
+
+.contact-config-description {
+  font-size: .92rem;
+  line-height: 1.75;
+
+  color: rgba(250, 247, 240, .7);
+  margin-bottom: 30px;
+}
+
+/* Koraci */
+
+.contact-config-steps {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 30px;
+
+  border-top: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.contact-config-step {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 15px 0;
+}
+
+.contact-config-step + .contact-config-step {
+  border-top: 1px solid rgba(250, 247, 240, .08);
+}
+
+.contact-config-step span {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+
+  color: var(--brass-300);
+}
+
+.contact-config-step p {
+  font-size: .86rem;
+  font-weight: 600;
+
+  color: var(--linen-100);
+}
+
+/* Glavno CTA dugme */
+
+.contact-config-btn {
+  display: flex;
+  width: 100%;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 17px 22px;
+  white-space: normal;
+}
+
+.contact-config-btn span {
+  font-size: 1.2rem;
+  transition: transform .3s var(--ease);
+}
+
+.contact-config-btn:hover span {
+  transform: translate(3px, -3px);
+}
+
+/* Napomena */
+
+.contact-config-note {
+  margin-top: 17px;
+
+  font-size: .75rem;
+  line-height: 1.6;
+
+  text-align: center;
+  color: rgba(250, 247, 240, .5);
+}
+
+/* Mobilni prikaz */
+
+@media (max-width: 600px) {
+
+  .contact-config-card {
+    padding: 28px 22px;
+  }
+
+  .contact-config-top {
+    margin-bottom: 24px;
+  }
+
+  .contact-config-card h3 {
+    font-size: 1.65rem;
+  }
+
+  .contact-config-description {
+    font-size: .88rem;
+  }
+
+  .contact-config-btn {
+    padding: 16px 20px;
+    font-size: .88rem;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================================
+   PRODUCT CONFIGURATOR — FINAL DESKTOP
+   [ PRVI DEKOR ][       VELIKA SLIKA       ][ DRUGI DEKOR ]
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  /* GLAVNI GRID */
+  .product-detail .wrap {
+    display: grid;
+
+    /* uži selektori + mnogo veća slika */
+    grid-template-columns:
+      270px
+      minmax(600px, 680px)
+      270px;
+
+    column-gap: 0;
+    row-gap: 0;
+
+    justify-content: center;
+    align-items: stretch;
+
+    max-width: 1268px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+
+  /* Omotači ne smeju da prave dodatne kolone */
+  .pd-info,
+  .pd-info > .pd-colors,
+  .pd-configurator {
+    display: contents;
+  }
+
+
+  /* ==========================================================
+     LEVI SELEKTOR
+     ========================================================== */
+
+  .pd-configurator > .pd-colors[data-zone-block="body"] {
+    grid-column: 1;
+    grid-row: 1;
+
+    width: 100%;
+    min-width: 0;
+    height: 620px;
+
+    margin: 0;
+    padding: 20px;
+
+    overflow-y: auto;
+
+    background: var(--linen-100);
+
+    border: 1px solid var(--line);
+    border-right: 0;
+
+    border-radius: 14px 0 0 14px;
+
+    box-shadow: none;
+  }
+
+
+  /* ==========================================================
+     SLIKA — CENTRALNI I NAJVEĆI DEO
+     ========================================================== */
+
+  .pd-media {
+    grid-column: 2;
+    grid-row: 1;
+
+    position: static;
+
+    width: 100%;
+    height: 620px;
+
+    margin: 0;
+    padding: 0;
+
+    min-width: 0;
+  }
+
+  .pd-media .frame {
+    width: 100%;
+    height: 620px;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    /*
+       Nema zaobljenja jer selektori naležu
+       direktno na obe ivice slike.
+    */
+    border-radius: 0;
+
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-left: 0;
+    border-right: 0;
+
+    background: var(--linen-100);
+
+    aspect-ratio: auto;
+  }
+
+
+  /* SLIKA POPUNJAVA RAM MNOGO BOLJE */
+  .pd-media .frame img,
+  .pd-media img,
+  #combinationPreview {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+    max-height: none;
+
+    object-fit: contain;
+    object-position: center;
+
+    margin: 0;
+    padding: 0;
+
+    filter: none;
+  }
+
+
+  /* ==========================================================
+     DESNI SELEKTOR
+     ========================================================== */
+
+  .pd-configurator > .pd-colors[data-zone-block="accent"] {
+    grid-column: 3;
+    grid-row: 1;
+
+    width: 100%;
+    min-width: 0;
+    height: 620px;
+
+    margin: 0;
+    padding: 20px;
+
+    overflow-y: auto;
+
+    background: var(--linen-100);
+
+    border: 1px solid var(--line);
+    border-left: 0;
+
+    border-radius: 0 14px 14px 0;
+
+    box-shadow: none;
+  }
+
+
+  /* ==========================================================
+     DEKORI — 3 U REDU
+     ========================================================== */
+
+  .pd-configurator .color-swatches {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .pd-configurator .swatch-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+
+  /* ==========================================================
+     INFORMACIJE ISPOD CELOG KONFIGURATORA
+     ========================================================== */
+
+  .pd-info > h1,
+  .pd-info > .pd-price,
+  .pd-info > .pd-desc,
+  .pd-info > .pd-specs,
+  .pd-info > .form-note,
+  .pd-info > .pd-order {
+    grid-column: 1 / -1;
+  }
+
+
+  .pd-info > h1 {
+    grid-row: 2;
+
+    width: min(860px, 100%);
+    margin: 50px auto 10px;
+
+    text-align: center;
+  }
+
+
+  .pd-info > .pd-price {
+    grid-row: 3;
+
+    width: min(860px, 100%);
+    margin: 0 auto 20px;
+
+    text-align: center;
+  }
+
+
+  .pd-info > .pd-desc {
+    grid-row: 4;
+
+    width: min(760px, 100%);
+    margin: 0 auto 30px;
+
+    text-align: center;
+  }
+
+
+  .pd-info > .pd-specs {
+    grid-row: 5;
+
+    width: min(860px, 100%);
+    margin: 0 auto 20px;
+  }
+
+
+  .pd-info > .form-note {
+    grid-row: 6;
+
+    width: min(860px, 100%);
+    margin: 0 auto 34px;
+
+    text-align: center;
+  }
+
+
+  /* ==========================================================
+     FORMA
+     ========================================================== */
+
+  .pd-info > .pd-order {
+    grid-row: 7;
+
+    width: min(860px, 100%);
+
+    margin: 0 auto;
+    padding: 34px 38px;
+
+    background: var(--linen-100);
+
+    border: 1px solid var(--line);
+    border-radius: 18px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+.order-selected-decors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+
+.order-decor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 14px 16px;
+
+  background: var(--linen-50);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.order-decor span {
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+
+.order-decor strong {
+  font-size: .9rem;
+  color: var(--walnut-950);
+  letter-spacing: .02em;
+}
+
+@media (max-width: 600px) {
+  .order-selected-decors {
+    grid-template-columns: 1fr;
+  }
+}
