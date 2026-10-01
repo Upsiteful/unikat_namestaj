@@ -490,22 +490,35 @@ document.body.classList.add("product-configurator-page");
 
   function updateOrderFields(){
 
-    if(bodyField && selected.body){
+  const bodyDisplay =
+    document.querySelector('[data-order-decor="body"]');
 
-      bodyField.value =
-        `${selected.body.label || selected.body.code} (${selected.body.code})`;
-
-    }
+  const accentDisplay =
+    document.querySelector('[data-order-decor="accent"]');
 
 
-    if(accentField && selected.accent){
+  if(bodyField && selected.body){
 
-      accentField.value =
-        `${selected.accent.label || selected.accent.code} (${selected.accent.code})`;
+    bodyField.value = selected.body.code;
 
+    if(bodyDisplay){
+      bodyDisplay.textContent = selected.body.code;
     }
 
   }
+
+
+  if(accentField && selected.accent){
+
+    accentField.value = selected.accent.code;
+
+    if(accentDisplay){
+      accentDisplay.textContent = selected.accent.code;
+    }
+
+  }
+
+}
 
 
 
