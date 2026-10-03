@@ -444,10 +444,10 @@ const COLORS = [
 const I18N = {
   sr: {
     top_phone: "+381 60 123 4567",
-    top_email: "info@unikatnamestaj.rs",
-    top_address: "Beograd, Srbija",
-    top_hours: "Pon–Pet 09–17h",
-    top_tagline: "Nameštaj po meri, izrađen za vaš prostor",
+top_email: "info@unikatnamestaj.rs",
+top_address: "Beograd, Srbija",
+top_hours: "Pon–Pet 09–17h",
+top_tagline: "Nameštaj po meri, izrađen za vaš prostor",
 
     nav_home: "Početna",
     nav_about: "O nama",
