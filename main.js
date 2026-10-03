@@ -228,10 +228,10 @@ function renderGallery(){
       <button type="button" class="reveal insta-tile-btn" data-src="${src}">
         <span class="insta-tile">
           <span class="swatch" style="background:linear-gradient(150deg, ${SWATCHES[i % SWATCHES.length]}, #241a12);"></span>
-          <img
+         <img
   class="insta-photo"
   src="${src}"
-  alt="Nameštaj po meri — realizacija Unikat Nameštaj"
+  alt="Realizacija nameštaja po meri — Unikat Nameštaj ${i + 1}"
   loading="lazy"
   decoding="async"
   onerror="this.remove()"
