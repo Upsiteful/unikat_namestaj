@@ -1113,13 +1113,7 @@ function initProductPage(){
 
 
 
-    document.title =
-      pickLang(
-        product.name,
-        lang
-      )
-      +
-      " — Unikat Nameštaj";
+  
 
 
 
