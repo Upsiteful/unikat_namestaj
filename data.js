@@ -462,7 +462,7 @@ const I18N = {
     hero_title: "Nameštaj koji je mera vašeg prostora, ne kompromisa",
     hero_text: "Svaki komad projektujemo, secemo i sklapamo ručno u našoj radionici — od jednog ormara do kompletnog enterijera.",
     hero_cta_primary: "Istražite kategorije",
-    hero_cta_secondary: "Zakažite besplatnu izmeru",
+    hero_cta_secondary: "Kontaktirajte nas",
     hero_stat1_num: "10",
     hero_stat1_label: "godina iskustva",
     hero_stat2_num: "400+",
