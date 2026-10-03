@@ -1432,7 +1432,7 @@ function initProductPage(){
 
 
 
-
+}
 
 
 
