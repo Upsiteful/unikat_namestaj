@@ -443,10 +443,10 @@ const COLORS = [
 /* ---------- Translation dictionary ---------- */
 const I18N = {
   sr: {
-    top_phone: "+381 60 123 4567",
-top_email: "info@unikatnamestaj.rs",
-top_address: "Beograd, Srbija",
-top_hours: "Pon–Pet 09–17h",
+   top_phone: "060 165 0377",
+top_email: "unikat2025@gmail.com",
+top_address: "Živojina Mišića, Gospođinci",
+top_hours: "Pon–Sub 08–20h · Ned 08–12h",
 top_tagline: "Nameštaj po meri, izrađen za vaš prostor",
 
     nav_home: "Početna",
