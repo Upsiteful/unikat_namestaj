@@ -1430,7 +1430,7 @@ function initProductPage(){
     render
   );
 
-}
+
 
 
 
