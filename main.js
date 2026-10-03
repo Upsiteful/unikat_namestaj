@@ -1190,15 +1190,6 @@ function initProductPage(){
    
 
 
-    if(title){
-
-      title.textContent =
-        pickLang(
-          product.name,
-          lang
-        );
-
-    }
 
 
 
