@@ -155,7 +155,7 @@ const PRODUCTS = [
 
     }
   }
-},,
+},
  
   { id: "tv-komoda-fer", cat: "dnevne-sobe", icon: "tvkomodamodel1.png", price: 640,
     name: { sr: "TV komoda Fer", en: "Fer TV Unit", de: "TV-Möbel Fer" },
