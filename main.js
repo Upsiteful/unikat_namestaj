@@ -169,15 +169,32 @@ const SWATCHES = ["#8a5f38","#6f4a2d","#b08d57","#4a3320","#c7ae82","#5b3a24"];
 function renderHomeCategories(){
   const grid = document.querySelector(".cat-grid");
   if(!grid) return;
+
   const lang = getLang();
-  grid.innerHTML = CATEGORIES.map(c => `
-    <a class="cat-card reveal" href="kategorija.html?kat=${c.id}">
-      <div class="icon-plate"><img src="${c.icon}" alt=""></div>
-      <h3>${pickLang(c.name, lang)}</h3>
-      <p>${pickLang(c.desc, lang)}</p>
-      <span class="cat-link" data-i18n="cat_cta">${(I18N[lang]||I18N.sr).cat_cta}</span>
-    </a>
-  `).join("");
+
+  grid.innerHTML = CATEGORIES.map(c => {
+
+    const href =
+      c.id === "kuhinje"
+        ? "proizvod.html?id=kuhinja-masiv"
+        : "index.html#contact";
+
+    return `
+      <a class="cat-card reveal" href="${href}">
+        <div class="icon-plate">
+          <img src="${c.icon}" alt="">
+        </div>
+
+        <h3>${pickLang(c.name, lang)}</h3>
+
+        <p>${pickLang(c.desc, lang)}</p>
+
+        <span class="cat-link">
+          ${(I18N[lang] || I18N.sr).cat_cta}
+        </span>
+      </a>
+    `;
+  }).join("");
 }
 
 function renderMegaMenu(){
