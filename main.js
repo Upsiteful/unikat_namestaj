@@ -198,7 +198,14 @@ function renderGallery(){
       <button type="button" class="reveal insta-tile-btn" data-src="${src}">
         <span class="insta-tile">
           <span class="swatch" style="background:linear-gradient(150deg, ${SWATCHES[i % SWATCHES.length]}, #241a12);"></span>
-          <img class="insta-photo" src="${src}" alt="" loading="lazy" onerror="this.remove()">
+          <img
+  class="insta-photo"
+  src="${src}"
+  alt="Nameštaj po meri — realizacija Unikat Nameštaj"
+  loading="lazy"
+  decoding="async"
+  onerror="this.remove()"
+>
           <span class="ig-icon">${iconZoom()}</span>
         </span>
       </button>
