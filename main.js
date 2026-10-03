@@ -183,9 +183,22 @@ function renderHomeCategories(){
 function renderMegaMenu(){
   document.querySelectorAll(".mega-drop").forEach(drop=>{
     const lang = getLang();
-    drop.innerHTML = CATEGORIES.map(c=>`
-      <a href="kategorija.html?kat=${c.id}"><img src="${c.icon}" alt="">${pickLang(c.name, lang)}</a>
-    `).join("");
+
+    drop.innerHTML = CATEGORIES.map(c=>{
+      const name = pickLang(c.name, lang);
+
+      const href =
+        c.id === "kuhinje"
+          ? "proizvod.html?id=kuhinja-masiv"
+          : "index.html#contact";
+
+      return `
+        <a href="${href}">
+          <img src="${c.icon}" alt="">
+          ${name}
+        </a>
+      `;
+    }).join("");
   });
 }
 function renderGallery(){
