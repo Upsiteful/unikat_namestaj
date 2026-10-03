@@ -1147,19 +1147,7 @@ function initProductPage(){
 
 
 
-    const currentCrumb =
-      document.querySelector(
-        ".breadcrumb .current"
-      );
-
-
-    if(currentCrumb){
-
-      currentCrumb.textContent =
-        pickLang(
-          product.name,
-          lang
-        );
+   
 
     }
 
@@ -1194,21 +1182,12 @@ function initProductPage(){
 
 
     if(preview){
-
-      preview.alt =
-        pickLang(
-          product.name,
-          lang
-        );
-
-    }
+  preview.alt = "Kuhinja po meri — Unikat Nameštaj";
+}
 
 
 
-    const title =
-      document.querySelector(
-        ".pd-info h1"
-      );
+   
 
 
     if(title){
