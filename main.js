@@ -1881,8 +1881,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
   initConfigurator();
   initCategoryPage();
   initProductPage();
-  initForms();
-  applyI18n(getLang());
+// initForms(); // EmailJS forme sada obrađuje email.js
+applyI18n(getLang());
   initReveal();
 
   document.addEventListener("langchange", ()=>{
