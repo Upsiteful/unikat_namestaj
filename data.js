@@ -470,9 +470,9 @@ top_tagline: "Nameštaj po meri, izrađen za vaš prostor",
     
 
     about_eyebrow: "O nama",
-    about_title: "Iz porodične stolarske radionice do studija za enterijer",
-    about_text1: "Unikat Nameštaj je porodična radionica koja od 2013. godine izrađuje nameštaj po meri za domove i poslovne prostore širom Srbije. Ne prodajemo gotova rešenja iz kataloga — svaki projekat počinje merenjem vašeg prostora i razgovorom o tome kako ga koristite.",
-    about_text2: "Radimo sa masivnim drvetom, furnirima i mesinganim okovom, a proces pratimo od skice, preko 3D prikaza, do montaže na licu mesta.",
+    about_title: "Iz stolarske radionice do studija za enterijer",
+    about_text1: "Unikat Nameštaj je porodična radionica koja od 2016. godine izrađuje nameštaj po meri za domove i poslovne prostore širom Srbije. Ne prodajemo samo gotova rešenja iz kataloga — svaki projekat počinje merenjem vašeg prostora i razgovorom o tome kako ga koristite.",
+    about_text2: "Radimo sa ivericom, farbanim medijapanom i furnirima. Koristimo Blum, Grass i okov sličnog kvaliteta. Proces pratimo od skice, preko 3D prikaza, do montaže na licu mesta.",
     about_point1_title: "Početna ideja",
     about_point1_text: "Sve počinje od Vaših želja i ideja — mi ih pretvaramo u funkcionalan i lep nameštaj.",
     about_point2_title: "Izlazak na merenje i konsultacija kod Vas",
